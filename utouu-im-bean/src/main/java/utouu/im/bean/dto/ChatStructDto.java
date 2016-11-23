@@ -9,6 +9,7 @@ public class ChatStructDto {
 	private String toAccount;
 	private long sendTime;
 	private ChatBody body;
+	private boolean offlineMsg;
 	public String getMsgid() {
 		return msgid;
 	}
@@ -38,5 +39,11 @@ public class ChatStructDto {
 	}
 	public void setBody(ChatBody body) {
 		this.body = body;
+	}
+	public boolean isOfflineMsg() {
+		return offlineMsg;
+	}
+	public void setOfflineMsg(boolean offlineMsg) {
+		this.offlineMsg = offlineMsg;
 	}
 }

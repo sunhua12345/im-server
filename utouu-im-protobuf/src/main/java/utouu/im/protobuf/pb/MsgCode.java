@@ -46,13 +46,21 @@ public final class MsgCode {
      */
     RES_SDK_SOMEONEPRIMARYTEXTCHATTOME(4, 200003),
     /**
+     * <code>RES_MANAGER_SOMEONEPRIMARYTEXTCHATTOME = 900001;</code>
+     *
+     * <pre>
+     *&#47;//////////////////////MANAGER_CHAT//////////////////////////////
+     * </pre>
+     */
+    RES_MANAGER_SOMEONEPRIMARYTEXTCHATTOME(5, 900001),
+    /**
      * <code>RES_HEART_BEAT = 999996;</code>
      *
      * <pre>
      *返回心跳包
      * </pre>
      */
-    RES_HEART_BEAT(5, 999996),
+    RES_HEART_BEAT(6, 999996),
     /**
      * <code>REQ_HEART_BEAT = 999997;</code>
      *
@@ -60,7 +68,7 @@ public final class MsgCode {
      *请求心跳包
      * </pre>
      */
-    REQ_HEART_BEAT(6, 999997),
+    REQ_HEART_BEAT(7, 999997),
     /**
      * <code>RES_CONNECT_CREATE = 999998;</code>
      *
@@ -68,7 +76,7 @@ public final class MsgCode {
      *返回链接建立成功
      * </pre>
      */
-    RES_CONNECT_CREATE(7, 999998),
+    RES_CONNECT_CREATE(8, 999998),
     /**
      * <code>RES_ALERT_MSG = 999999;</code>
      *
@@ -76,7 +84,7 @@ public final class MsgCode {
      *返回提示消息
      * </pre>
      */
-    RES_ALERT_MSG(8, 999999),
+    RES_ALERT_MSG(9, 999999),
     ;
 
     /**
@@ -111,6 +119,14 @@ public final class MsgCode {
      * </pre>
      */
     public static final int RES_SDK_SOMEONEPRIMARYTEXTCHATTOME_VALUE = 200003;
+    /**
+     * <code>RES_MANAGER_SOMEONEPRIMARYTEXTCHATTOME = 900001;</code>
+     *
+     * <pre>
+     *&#47;//////////////////////MANAGER_CHAT//////////////////////////////
+     * </pre>
+     */
+    public static final int RES_MANAGER_SOMEONEPRIMARYTEXTCHATTOME_VALUE = 900001;
     /**
      * <code>RES_HEART_BEAT = 999996;</code>
      *
@@ -154,6 +170,7 @@ public final class MsgCode {
         case 200001: return REQ_SDK_PRIMARYTEXTCHAT;
         case 200002: return RES_SDK_PRIMARYTEXTCHAT;
         case 200003: return RES_SDK_SOMEONEPRIMARYTEXTCHATTOME;
+        case 900001: return RES_MANAGER_SOMEONEPRIMARYTEXTCHATTOME;
         case 999996: return RES_HEART_BEAT;
         case 999997: return REQ_HEART_BEAT;
         case 999998: return RES_CONNECT_CREATE;
@@ -3296,14 +3313,16 @@ public final class MsgCode {
       "tr\030\003 \001(\t\022\014\n\004flag\030\004 \001(\010\"6\n\017ResConnectCrea" +
       "t\022\013\n\003now\030\001 \002(\003\022\026\n\016heartbeartTime\030\002 \002(\003\"\016" +
       "\n\014ReqHeartBeat\"\034\n\014ResHeartBeat\022\014\n\004time\030\001" +
-      " \002(\003*\367\001\n\010GameCode\022\023\n\rREQ_SDK_LOGIN\020\241\215\006\022\023" +
+      " \002(\003*\245\002\n\010GameCode\022\023\n\rREQ_SDK_LOGIN\020\241\215\006\022\023" +
       "\n\rRES_SDK_LOGIN\020\242\215\006\022\035\n\027REQ_SDK_PRIMARYTE" +
       "XTCHAT\020\301\232\014\022\035\n\027RES_SDK_PRIMARYTEXTCHAT\020\302\232",
       "\014\022(\n\"RES_SDK_SOMEONEPRIMARYTEXTCHATTOME\020" +
-      "\303\232\014\022\024\n\016RES_HEART_BEAT\020\274\204=\022\024\n\016REQ_HEART_B" +
-      "EAT\020\275\204=\022\030\n\022RES_CONNECT_CREATE\020\276\204=\022\023\n\rRES" +
-      "_ALERT_MSG\020\277\204=*%\n\tAlertType\022\030\n\023CAN_NOT_F" +
-      "IND_HANDLE\020\220NB\026\n\024utouu.im.protobuf.pb"
+      "\303\232\014\022,\n&RES_MANAGER_SOMEONEPRIMARYTEXTCHA" +
+      "TTOME\020\241\3676\022\024\n\016RES_HEART_BEAT\020\274\204=\022\024\n\016REQ_H" +
+      "EART_BEAT\020\275\204=\022\030\n\022RES_CONNECT_CREATE\020\276\204=\022" +
+      "\023\n\rRES_ALERT_MSG\020\277\204=*%\n\tAlertType\022\030\n\023CAN" +
+      "_NOT_FIND_HANDLE\020\220NB\026\n\024utouu.im.protobuf" +
+      ".pb"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

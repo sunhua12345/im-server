@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import utouu.im.annotation.ILoginNoCheck;
+import utouu.im.net.GlobalServerSender;
 import utouu.im.net.http.BaseController;
 @RestController
 @RequestMapping(value="/v1")
@@ -20,6 +21,9 @@ public class V1AccountController extends BaseController{
 	@RequestMapping(value="/sendMsg")
 	public String sendMsg(HttpServletRequest request){
 		System.out.println("##########向服务器sdk用户主动推数据");
+		String toAccount = request.getParameter("toAccount");
+		String chatText = request.getParameter("chatText");
+		GlobalServerSender.sendMsg(toAccount,chatText);
 		return null;
 	}
 	

@@ -1,6 +1,7 @@
 package utouu.im.net.service;
 
 import utouu.im.annotation.IService;
+import utouu.im.net.GlobalServerSender;
 import utouu.im.net.service.api.IChatService;
 import utouu.im.net.tcp.mina.SessionClient;
 import utouu.im.net.tcp.mina.cache.ServerCache;
@@ -24,7 +25,7 @@ public class ChatService extends BaseService implements IChatService{
 			IoSender.sendMsg(otherClient, GameCode.RES_SDK_SOMEONEPRIMARYTEXTCHATTOME, builder2);
 		}else{
 			//当前节点不在线,可能在其它服务器节点,通过zookeeper来进行数据一致性操作
-			boolean online = getOnlineCheckAllZnode(otherAccount);
+			boolean online = GlobalServerSender.getOnlineCheckAllZnode(otherAccount);
 			if(online){
 				//账号在其它znode在线,通过zookeeper协调一致性,发起推送消息
 			}else{
@@ -32,10 +33,6 @@ public class ChatService extends BaseService implements IChatService{
 			}
 		}
 		IoSender.sendMsg(client, GameCode.RES_SDK_PRIMARYTEXTCHAT, builder);
-	}
-
-	private boolean getOnlineCheckAllZnode(String otherAccount) {
-		return false;
 	}
 
 }

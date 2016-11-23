@@ -1,0 +1,63 @@
+package ProtoNet;
+option java_package = "utouu.im.protobuf.pb";
+enum GameCode{	
+	/////////////////////////SDK_LOGIN//////////////////////////////
+	REQ_SDK_LOGIN = 100001;//sdk请求登录im服务器
+	RES_SDK_LOGIN = 100002;
+	
+	/////////////////////////SDK_CHAT//////////////////////////////
+	REQ_SDK_PRIMARYTEXTCHAT = 200001;//sdk请求文字私聊别人
+	RES_SDK_PRIMARYTEXTCHAT  = 200002;
+	RES_SDK_SOMEONEPRIMARYTEXTCHATTOME  = 200003;//返回sdk某人给我私聊了文本消息
+	
+	
+	
+	/////////////////////////MANAGER_CHAT//////////////////////////////
+	RES_MANAGER_SOMEONEPRIMARYTEXTCHATTOME  = 900001;//返回后台sdk某人给我私聊了文本消息	
+
+
+
+	RES_HEART_BEAT = 999996;//返回心跳包
+	REQ_HEART_BEAT = 999997;//请求心跳包
+	RES_CONNECT_CREATE = 999998;//返回链接建立成功
+	RES_ALERT_MSG = 999999;//返回提示消息
+}
+
+
+
+enum AlertType{
+
+	
+	CAN_NOT_FIND_HANDLE = 10000;//找不到处理类
+}
+
+
+//RES_ALERT_MSG = 999999;//返回提示消息
+message ResAlertMsg{
+	required AlertType alertType = 1;//提示类型
+	repeated Param params = 2;//参数
+}
+
+
+message Param{
+	optional int32 intNum = 1;
+	optional int64 longNum = 2;
+	optional string str = 3;
+	optional bool flag = 4;
+}
+
+//RES_CONNECT_CREATE = 999998//返回链接建立成功
+message ResConnectCreat{
+	required int64 now = 1;//服务器当前时间
+	required int64 heartbeartTime = 2;//心跳检测间隔
+}
+
+//REQ_HEART_BEAT = 999997//请求心跳包
+message ReqHeartBeat{
+}
+
+//RES_HEART_BEAT = 999996;//返回心跳包
+message ResHeartBeat{
+	required int64 time = 1;//服务器当前时间
+}
+

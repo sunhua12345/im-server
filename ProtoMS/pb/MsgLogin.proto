@@ -1,0 +1,13 @@
+package ProtoNet;
+option java_package = "utouu.im.protobuf.pb";
+
+//REQ_SDK_LOGIN = 100001;//sdk请求登录im服务器
+message ReqSdkLogin{
+	required string utouuImAccount = 1;
+	required string utouuImPwd = 2;
+}
+
+//RES_SDK_LOGIN = 100002;
+message ResSdkLogin{
+	required int32 loginResult = 1;//0代表登录成功,1代表登录失败,其他枚举后续定义
+}

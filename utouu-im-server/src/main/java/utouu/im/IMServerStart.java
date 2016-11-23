@@ -16,6 +16,7 @@ import utouu.im.net.tcp.mina.SessionFilterManager;
 import utouu.im.net.tcp.mina.codec.MinaCodecFactory;
 import utouu.im.net.tcp.mina.codec.MinaIMHandler;
 import utouu.im.obj.ObjectPool;
+import utouu.im.obj.ServiceManager;
 import utouu.im.thread.AynWork;
 import utouu.im.thread.TimerCenter;
 
@@ -30,6 +31,7 @@ public class IMServerStart extends AynWork{
 		AutoStartManager.getManager().start();
 		AutoAynStartManager.getManager().start();
 		SessionFilterManager.getManager().start();
+		ServiceManager.getManager().start();
 	}
 
 	@Override

@@ -1,0 +1,21 @@
+package ProtoNet;
+option java_package = "utouu.im.protobuf.pb";
+//1代表文字聊天,2代表语音聊天,3代表图片,4代表视频,5代表地理位置
+
+
+//REQ_SDK_PRIMARYTEXTCHAT = 200001;//sdk请求文字私聊别人
+message ReqSdkPrimaryTextChat{
+	required string toAccount = 1;//接受者账号
+	required string chatText = 2;//发送内容
+}
+
+//RES_SDK_PRIMARYTEXTCHAT  = 200002;
+message ResSdkPrimaryTextChat{
+	required int32 primaryTextChatResult = 1;//0代表聊天发送成功,1代表聊天发送失败,其他枚举后续定义
+}
+
+//RES_SDK_SOMEONEPRIMARYTEXTCHATTOME  = 200003;//返回sdk某人给我私聊了文本消息
+message ResSdkSomeOnePrimaryTextChatToMe{
+	required string fromAccount = 1;//发送者账号
+	required string chatText = 2;//发送内容
+}
