@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration scan="true" scanPeriod="30 seconds">
+
+	<!-- æ§å¶å°è¾åº -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>DEBUG</level>
+		</filter>
+		<encoder><!-- %logger{80} %caller{2} -->
+			<pattern>%d{HH:mm:ss SSS} %-5level [%thread] %logger{80} %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="ERROR_FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>log\%d{yyyy-MM-dd}\%d{HHmmss}_error.log
+			</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>ERROR</level>
+		</filter>
+		<append>true</append>
+		<encoder>
+			<pattern>%d{HH:mm:ss SSS} %-5level [%thread] %logger{80} %msg%n</pattern>
+		</encoder>
+	</appender>
+	<appender name="DEBUG_FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>log\%d{yyyy-MM-dd}\%d{HHmmss}_debug.log
+			</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>DEBUG</level>
+		</filter>
+		<append>true</append>
+		<encoder>
+			<pattern>%d{HH:mm:ss SSS} %-5level [%thread] %logger{80} %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<root level="DEBUG">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="ERROR_FILE" />
+		<appender-ref ref="DEBUG_FILE" />
+	</root>
+
+	<logger name="org.springframework" level="warn" />
+	<logger name="org.quartz" level="error" />
+	<logger name="org.eclipse.jetty" level="error" />
+	<logger name="org.apache.mina.filter.codec.ProtocolCodecFilter" level="error" />
+</configuration>  
