@@ -1,7 +1,7 @@
 package ProtoNet;
 option java_package = "utouu.im.protobuf.pb";
 
-//REQ_SDK_LOGIN = 100001;//sdk请求登录im服务器
+//REQ_SDK_LOGIN = 100001;//sdk请求登录
 message ReqSdkLogin{
 	required string utouuImAccount = 1;
 	required string utouuImPwd = 2;

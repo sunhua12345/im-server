@@ -2,18 +2,18 @@
 
 set mulu="%cd%"
 
-echo µ±Ç°Ä¿Â¼%mulu%
+echo ï¿½ï¿½Ç°Ä¿Â¼%mulu%
 
 for /r %mulu% %%i in (./*.proto) do (
 
 set name=%%~nxi
 
-echo Éú³É!name!
+echo ï¿½ï¿½ï¿½ï¿½!name!
 
 protoc.exe --java_out=D:/SourceTreeRepository/utouu-im/utouu-im-protobuf/src/main/java/./ !name!
 
 )
 
-echo Íê³É.
+echo ï¿½ï¿½ï¿½.
 
 pause>nul

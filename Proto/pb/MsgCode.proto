@@ -2,20 +2,21 @@ package ProtoNet;
 option java_package = "utouu.im.protobuf.pb";
 enum GameCode{	
 	/////////////////////////SDK_LOGIN//////////////////////////////
-	REQ_SDK_LOGIN = 100001;//sdk请求登录im服务器
-	RES_SDK_LOGIN = 100002;
-	
-	/////////////////////////SDK_CHAT//////////////////////////////
-	REQ_SDK_PRIMARYTEXTCHAT = 200001;//sdk请求文字私聊别人
-	RES_SDK_PRIMARYTEXTCHAT  = 200002;
-	RES_SDK_SOMEONEPRIMARYTEXTCHATTOME  = 200003;//返回sdk某人给我私聊了文本消息
+	REQ_SDK_LOGIN = 100001;//请求sdk登录
+	RES_SDK_LOGIN = 100002;//返回sdk登录
 	
 	
 	
-	/////////////////////////MANAGER_CHAT//////////////////////////////
-	RES_MANAGER_SOMEONEPRIMARYTEXTCHATTOME  = 900001;//返回后台sdk某人给我私聊了文本消息	
-
-
+	
+	REQ_SDK_PRIMARY_CHAT = 200001;//sdk请求文字私聊别人
+	RES_SDK_PRIMARY_CHAT  = 200002;//sdk返回文字私聊别人
+	NOTIFY_SOMEONE_PRIMARY_CHAT_TO_ME = 200003;//通知某人私聊我
+	
+	
+	
+	REQ_NODE_SERVER_CREATE = 800000;//请求节点服务器创建链接成功
+	NOTIFY_NODE_SOMEONE_PRIMARYCHAT_TO_ME = 800001;//通知其他服务器节点某人私聊某人
+	
 
 	RES_HEART_BEAT = 999996;//返回心跳包
 	REQ_HEART_BEAT = 999997;//请求心跳包

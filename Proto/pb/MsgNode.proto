@@ -1,0 +1,20 @@
+package ProtoNet;
+option java_package = "utouu.im.protobuf.pb";
+
+//REQ_NODE_SERVER_CREATE = 800000;//请求节点服务器创建链接成功
+message ReqNodeServerCreate{
+	required string serverip = 1;//节点ip
+	required int32 serverport = 2;//节点port
+}
+
+
+//NOTIFY_NODE_SOMEONE_PRIMARYCHAT_TO_ME = 800001;//通知其他服务器节点某人私聊某人
+message NotifyNodeSomeOnePrimaryChatToMe{
+	required string serverip = 1;
+	required int32 serverport = 2;
+	required string fromAccount = 3;//发送者账号
+	required string toAccount = 4;//接收者账号
+	required int32 type = 5;//聊天类型
+	optional string text = 6;//文字聊天内容
+	optional bytes mediaBytes = 7;//音频文件二进制流
+}

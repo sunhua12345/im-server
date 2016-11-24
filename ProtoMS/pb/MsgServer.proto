@@ -1,9 +1,0 @@
-package ProtoNet;
-option java_package = "utouu.im.protobuf.pb";
-//1代表文字聊天,2代表语音聊天,3代表图片,4代表视频,5代表地理位置
-
-
-//RES_MANAGER_SOMEONEPRIMARYTEXTCHATTOME  = 900001;//返回后台sdk某人给我私聊了文本消息
-message ResManagerSomeOnePrimaryTextChatToMe{
-	required string chatText = 1;//发送内容
-}
