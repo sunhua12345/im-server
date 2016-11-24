@@ -21,9 +21,6 @@ import org.apache.zookeeper.data.Stat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.alibaba.fastjson.JSONObject;
-
-import utouu.im.net.GlobalServerSender.ServerNotify;
 import utouu.im.net.service.ZookeeperService;
 import utouu.im.net.tcp.mina.node.ServerNodeInfo;
 import utouu.im.net.tcp.mina.node.work.NodeClientConnectWork;
@@ -35,7 +32,7 @@ public class ZookeeperTool {
 	public static CuratorFramework zkClient;
 	public static Map<String, InterProcessMutex> locks = new ConcurrentHashMap<String, InterProcessMutex>();
 	private static PathChildrenCache queueListener = null;
-	private static NodeCache nodeCache=null;
+	private static NodeCache nodeCache = null;
 
 	/********************************************** ZOOKEEPER_OPERATE **********************************/
 	public static void createZnode(String zNoodePath, CreateMode mode, List<ACL> acls) throws Exception {
@@ -189,7 +186,7 @@ public class ZookeeperTool {
 					System.out.println(
 							"Node data is changed, new data: " + new String(nodeCache.getCurrentData().getData()));
 					String data = new String(nodeCache.getCurrentData().getData());
-					WorkManager.getManager().submit(ServerNotifyWork.class,data);
+					WorkManager.getManager().submit(ServerNotifyWork.class, data);
 				}
 			});
 
