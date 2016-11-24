@@ -21,9 +21,14 @@ public class V1AccountController extends BaseController{
 	@RequestMapping(value="/sendMsg")
 	public String sendMsg(HttpServletRequest request){
 		System.out.println("##########向服务器sdk用户主动推数据");
-		String toAccount = request.getParameter("toAccount");
+		String toAccountString = request.getParameter("toAccount");
+		String[] toAccounts = toAccountString.split(",");
 		String chatText = request.getParameter("chatText");
-		GlobalServerSender.sendMsg(toAccount,chatText);
+		try {
+			GlobalServerSender.sendMsg(toAccounts,chatText);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 	

@@ -7,6 +7,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.curator.framework.CuratorFramework;
+import org.apache.curator.framework.recipes.cache.NodeCache;
+import org.apache.curator.framework.recipes.cache.NodeCacheListener;
 import org.apache.curator.framework.recipes.cache.PathChildrenCache;
 import org.apache.curator.framework.recipes.cache.PathChildrenCacheEvent;
 import org.apache.curator.framework.recipes.cache.PathChildrenCacheListener;
@@ -19,16 +21,21 @@ import org.apache.zookeeper.data.Stat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.alibaba.fastjson.JSONObject;
+
+import utouu.im.net.GlobalServerSender.ServerNotify;
 import utouu.im.net.service.ZookeeperService;
 import utouu.im.net.tcp.mina.node.ServerNodeInfo;
 import utouu.im.net.tcp.mina.node.work.NodeClientConnectWork;
+import utouu.im.net.tcp.mina.work.ServerNotifyWork;
 import utouu.im.thread.WorkManager;
 
 public class ZookeeperTool {
 	private static final Logger logger = LoggerFactory.getLogger(ZookeeperTool.class);
 	public static CuratorFramework zkClient;
 	public static Map<String, InterProcessMutex> locks = new ConcurrentHashMap<String, InterProcessMutex>();
-	private static PathChildrenCache queueListener=null;
+	private static PathChildrenCache queueListener = null;
+	private static NodeCache nodeCache=null;
 
 	/********************************************** ZOOKEEPER_OPERATE **********************************/
 	public static void createZnode(String zNoodePath, CreateMode mode, List<ACL> acls) throws Exception {
@@ -172,21 +179,19 @@ public class ZookeeperTool {
 
 			zkClient.start();
 
-			// /**
-			// * 监听数据节点的变化情况
-			// */
-			// final NodeCache nodeCache = new NodeCache(zkClient, root, false);
-			// nodeCache.start(true);
-			// nodeCache.getListenable().addListener(
-			// new NodeCacheListener() {
-			//
-			// @Override
-			// public void nodeChanged() throws Exception {
-			// System.out.println("Node data is changed, new data: " +
-			// new String(nodeCache.getCurrentData().getData()));
-			// }
-			// }
-			// );
+			nodeCache = new NodeCache(zkClient, "/sunhua/broad/server_notify", false);
+			nodeCache.start(true);
+			nodeCache.getListenable().addListener(new NodeCacheListener() {
+
+				@Override
+				public void nodeChanged() throws Exception {
+					System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+					System.out.println(
+							"Node data is changed, new data: " + new String(nodeCache.getCurrentData().getData()));
+					String data = new String(nodeCache.getCurrentData().getData());
+					WorkManager.getManager().submit(ServerNotifyWork.class,data);
+				}
+			});
 
 			queueListener = new PathChildrenCache(zkClient, "/sunhua/online", true);
 			queueListener.start(StartMode.POST_INITIALIZED_EVENT);
@@ -195,27 +200,27 @@ public class ZookeeperTool {
 				@Override
 				public void childEvent(CuratorFramework client, PathChildrenCacheEvent event) throws Exception {
 					switch (event.getType()) {
-						case CHILD_ADDED:
-							System.out.println("CHILD_ADDED: " + event.getData().getPath());
-							String path = event.getData().getPath().substring("/sunhua/online/".length());
-							String server_path = ZookeeperService.address+"-"+ZookeeperService.port;
-							if(!path.equals(server_path)){
-								//新节点加入到集群中
-								String hostIp = path.split("-")[0];
-								int port = Integer.valueOf(path.split("-")[1]);
-								ServerNodeInfo serverNodeInfo = new ServerNodeInfo(hostIp,port);
-								System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%");
-								WorkManager.getManager().submit(NodeClientConnectWork.class,serverNodeInfo);
-							}
-							break;
-						case CHILD_REMOVED:
-							System.out.println("CHILD_REMOVED: " + event.getData().getPath());
-							break;
-						case CHILD_UPDATED:
-							System.out.println("CHILD_UPDATED: " + event.getData().getPath());
-							break;
-						default:
-							break;
+					case CHILD_ADDED:
+						System.out.println("CHILD_ADDED: " + event.getData().getPath());
+						String path = event.getData().getPath().substring("/sunhua/online/".length());
+						String server_path = ZookeeperService.address + "-" + ZookeeperService.port;
+						if (!path.equals(server_path)) {
+							// 新节点加入到集群中
+							String hostIp = path.split("-")[0];
+							int port = Integer.valueOf(path.split("-")[1]);
+							ServerNodeInfo serverNodeInfo = new ServerNodeInfo(hostIp, port);
+							System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%");
+							WorkManager.getManager().submit(NodeClientConnectWork.class, serverNodeInfo);
+						}
+						break;
+					case CHILD_REMOVED:
+						System.out.println("CHILD_REMOVED: " + event.getData().getPath());
+						break;
+					case CHILD_UPDATED:
+						System.out.println("CHILD_UPDATED: " + event.getData().getPath());
+						break;
+					default:
+						break;
 					}
 				}
 			});

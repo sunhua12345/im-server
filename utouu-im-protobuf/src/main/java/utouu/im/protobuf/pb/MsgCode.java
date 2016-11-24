@@ -54,13 +54,21 @@ public final class MsgCode {
      */
     NOTIFY_SOMEONE_PRIMARY_CHAT_TO_ME(4, 200003),
     /**
+     * <code>NOTIFY_SERVER_BROAD_MSG = 300001;</code>
+     *
+     * <pre>
+     *服务器通知消息
+     * </pre>
+     */
+    NOTIFY_SERVER_BROAD_MSG(5, 300001),
+    /**
      * <code>REQ_NODE_SERVER_CREATE = 800000;</code>
      *
      * <pre>
      *请求节点服务器创建链接成功
      * </pre>
      */
-    REQ_NODE_SERVER_CREATE(5, 800000),
+    REQ_NODE_SERVER_CREATE(6, 800000),
     /**
      * <code>NOTIFY_NODE_SOMEONE_PRIMARYCHAT_TO_ME = 800001;</code>
      *
@@ -68,7 +76,7 @@ public final class MsgCode {
      *通知其他服务器节点某人私聊某人
      * </pre>
      */
-    NOTIFY_NODE_SOMEONE_PRIMARYCHAT_TO_ME(6, 800001),
+    NOTIFY_NODE_SOMEONE_PRIMARYCHAT_TO_ME(7, 800001),
     /**
      * <code>RES_HEART_BEAT = 999996;</code>
      *
@@ -76,7 +84,7 @@ public final class MsgCode {
      *返回心跳包
      * </pre>
      */
-    RES_HEART_BEAT(7, 999996),
+    RES_HEART_BEAT(8, 999996),
     /**
      * <code>REQ_HEART_BEAT = 999997;</code>
      *
@@ -84,7 +92,7 @@ public final class MsgCode {
      *请求心跳包
      * </pre>
      */
-    REQ_HEART_BEAT(8, 999997),
+    REQ_HEART_BEAT(9, 999997),
     /**
      * <code>RES_CONNECT_CREATE = 999998;</code>
      *
@@ -92,7 +100,7 @@ public final class MsgCode {
      *返回链接建立成功
      * </pre>
      */
-    RES_CONNECT_CREATE(9, 999998),
+    RES_CONNECT_CREATE(10, 999998),
     /**
      * <code>RES_ALERT_MSG = 999999;</code>
      *
@@ -100,7 +108,7 @@ public final class MsgCode {
      *返回提示消息
      * </pre>
      */
-    RES_ALERT_MSG(10, 999999),
+    RES_ALERT_MSG(11, 999999),
     ;
 
     /**
@@ -143,6 +151,14 @@ public final class MsgCode {
      * </pre>
      */
     public static final int NOTIFY_SOMEONE_PRIMARY_CHAT_TO_ME_VALUE = 200003;
+    /**
+     * <code>NOTIFY_SERVER_BROAD_MSG = 300001;</code>
+     *
+     * <pre>
+     *服务器通知消息
+     * </pre>
+     */
+    public static final int NOTIFY_SERVER_BROAD_MSG_VALUE = 300001;
     /**
      * <code>REQ_NODE_SERVER_CREATE = 800000;</code>
      *
@@ -202,6 +218,7 @@ public final class MsgCode {
         case 200001: return REQ_SDK_PRIMARY_CHAT;
         case 200002: return RES_SDK_PRIMARY_CHAT;
         case 200003: return NOTIFY_SOMEONE_PRIMARY_CHAT_TO_ME;
+        case 300001: return NOTIFY_SERVER_BROAD_MSG;
         case 800000: return REQ_NODE_SERVER_CREATE;
         case 800001: return NOTIFY_NODE_SOMEONE_PRIMARYCHAT_TO_ME;
         case 999996: return RES_HEART_BEAT;
@@ -3346,16 +3363,17 @@ public final class MsgCode {
       "tr\030\003 \001(\t\022\014\n\004flag\030\004 \001(\010\"6\n\017ResConnectCrea" +
       "t\022\013\n\003now\030\001 \002(\003\022\026\n\016heartbeartTime\030\002 \002(\003\"\016" +
       "\n\014ReqHeartBeat\"\034\n\014ResHeartBeat\022\014\n\004time\030\001" +
-      " \002(\003*\273\002\n\010GameCode\022\023\n\rREQ_SDK_LOGIN\020\241\215\006\022\023" +
+      " \002(\003*\332\002\n\010GameCode\022\023\n\rREQ_SDK_LOGIN\020\241\215\006\022\023" +
       "\n\rRES_SDK_LOGIN\020\242\215\006\022\032\n\024REQ_SDK_PRIMARY_C" +
       "HAT\020\301\232\014\022\032\n\024RES_SDK_PRIMARY_CHAT\020\302\232\014\022\'\n!N",
-      "OTIFY_SOMEONE_PRIMARY_CHAT_TO_ME\020\303\232\014\022\034\n\026" +
-      "REQ_NODE_SERVER_CREATE\020\200\3520\022+\n%NOTIFY_NOD" +
-      "E_SOMEONE_PRIMARYCHAT_TO_ME\020\201\3520\022\024\n\016RES_H" +
-      "EART_BEAT\020\274\204=\022\024\n\016REQ_HEART_BEAT\020\275\204=\022\030\n\022R" +
-      "ES_CONNECT_CREATE\020\276\204=\022\023\n\rRES_ALERT_MSG\020\277" +
-      "\204=*%\n\tAlertType\022\030\n\023CAN_NOT_FIND_HANDLE\020\220" +
-      "NB\026\n\024utouu.im.protobuf.pb"
+      "OTIFY_SOMEONE_PRIMARY_CHAT_TO_ME\020\303\232\014\022\035\n\027" +
+      "NOTIFY_SERVER_BROAD_MSG\020\341\247\022\022\034\n\026REQ_NODE_" +
+      "SERVER_CREATE\020\200\3520\022+\n%NOTIFY_NODE_SOMEONE" +
+      "_PRIMARYCHAT_TO_ME\020\201\3520\022\024\n\016RES_HEART_BEAT" +
+      "\020\274\204=\022\024\n\016REQ_HEART_BEAT\020\275\204=\022\030\n\022RES_CONNEC" +
+      "T_CREATE\020\276\204=\022\023\n\rRES_ALERT_MSG\020\277\204=*%\n\tAle" +
+      "rtType\022\030\n\023CAN_NOT_FIND_HANDLE\020\220NB\026\n\024utou" +
+      "u.im.protobuf.pb"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

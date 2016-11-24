@@ -1,10 +1,8 @@
 package utouu.im.net;
 
-import java.io.IOException;
 import java.net.InetSocketAddress;
 
 import org.apache.mina.core.filterchain.DefaultIoFilterChainBuilder;
-import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.filter.codec.ProtocolCodecFilter;
 import org.apache.mina.transport.socket.SocketAcceptor;
 import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
@@ -12,7 +10,6 @@ import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
 import utouu.im.auto.AutoAynStartManager;
 import utouu.im.auto.AutoStartManager;
 import utouu.im.config.Config;
-import utouu.im.net.service.ZookeeperService;
 import utouu.im.net.service.api.IZookeeperService;
 import utouu.im.net.tcp.mina.SessionFilterManager;
 import utouu.im.net.tcp.mina.codec.MinaCodecFactory;
@@ -50,7 +47,7 @@ public class IMServerStart extends AynWork{
 			acceptor.bind(new InetSocketAddress(Config.getConfig().IM_SERVER_IP,Config.getConfig().IM_SERVER_PORT));
 			logger.debug("START_SERVER BIND IP:{},LISTEN PORT:{}", Config.getConfig().IM_SERVER_IP,Config.getConfig().IM_SERVER_PORT);
 			zookeeperService.serverInit();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

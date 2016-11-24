@@ -1,5 +1,6 @@
 package utouu.im.net.service;
 
+import java.io.UnsupportedEncodingException;
 import java.lang.management.ManagementFactory;
 import java.net.InetAddress;
 import java.util.HashMap;
@@ -16,6 +17,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 
 import utouu.im.config.Config;
+import utouu.im.net.GlobalServerSender.ServerNotify;
 import utouu.im.net.service.api.IZookeeperService;
 import utouu.im.net.tcp.mina.entity.vo.AccountOnlineVO;
 import utouu.im.net.zookeeper.ZookeeperTool;
@@ -37,18 +39,18 @@ public class ZookeeperService extends BaseService implements IZookeeperService{
 	}
 	@Override
 	public void serverInit() {
-		try {
-			//初始化znode节点名称为online_accounts的临时节点
-				ZookeeperTool.createZnode("/sunhua/online/"+address+"-"+port+"/online_accounts", CreateMode.EPHEMERAL, ZooDefs.Ids.OPEN_ACL_UNSAFE);
-				if(!ZookeeperTool.checkZnode("/sunhua/online/"+address+"-"+port+"/online_accounts")){
-			}
-			if(!ZookeeperTool.checkZnode("/sunhua/broad/server_notify")){
-				//初始化znode节点名称为server_notify
-				ZookeeperTool.createZnode("/sunhua/broad/server_notify", CreateMode.EPHEMERAL, ZooDefs.Ids.OPEN_ACL_UNSAFE);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//		try {
+//			//初始化znode节点名称为online_accounts的临时节点
+//				ZookeeperTool.createZnode("/sunhua/online/"+address+"-"+port+"/online_accounts", CreateMode.EPHEMERAL, ZooDefs.Ids.OPEN_ACL_UNSAFE);
+//				if(!ZookeeperTool.checkZnode("/sunhua/online/"+address+"-"+port+"/online_accounts")){
+//			}
+//			if(!ZookeeperTool.checkZnode("/sunhua/broad/server_notify")){
+//				//初始化znode节点名称为server_notify
+//				ZookeeperTool.createZnode("/sunhua/broad/server_notify", CreateMode.EPHEMERAL, ZooDefs.Ids.OPEN_ACL_UNSAFE);
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 	}
 	@Override
 	public void updateOnlineAccounts(String onlinesKeysString) {
@@ -86,6 +88,10 @@ public class ZookeeperService extends BaseService implements IZookeeperService{
 			e.printStackTrace();
 		}
 		return vo;
+	}
+	@Override
+	public void server_notify(ServerNotify notify) throws UnsupportedEncodingException, Exception {
+		ZookeeperTool.setData("/sunhua/broad/server_notify", JSONObject.toJSONString(notify).getBytes("UTF-8"));
 	}
 
 }
