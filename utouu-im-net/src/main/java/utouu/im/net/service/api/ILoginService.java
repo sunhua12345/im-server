@@ -1,10 +1,11 @@
 package utouu.im.net.service.api;
 
+import java.util.List;
 
-import utouu.im.net.tcp.mina.entity.vo.OffChatMsgDetail;
+import utouu.im.bean.dto.ChatStructDto;
 
 public interface ILoginService {
 
-	public OffChatMsgDetail pullOffLineChatMsgDetail(String account);
+	public List<ChatStructDto> pullOffLineChatMsgDetail(String account,int page,int pageLength);
 
 }

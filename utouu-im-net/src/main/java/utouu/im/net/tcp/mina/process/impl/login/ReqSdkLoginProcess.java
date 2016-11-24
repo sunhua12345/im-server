@@ -1,18 +1,20 @@
 package utouu.im.net.tcp.mina.process.impl.login;
 
+import java.util.List;
+
 import org.apache.mina.core.session.IoSession;
 
 import com.google.protobuf.GeneratedMessage.Builder;
 
 import utouu.im.annotation.IProcess;
+import utouu.im.bean.dto.ChatStructDto;
+import utouu.im.net.ServiceManager;
 import utouu.im.net.service.api.ILoginService;
 import utouu.im.net.tcp.mina.IMQueue;
 import utouu.im.net.tcp.mina.SessionClient;
 import utouu.im.net.tcp.mina.cache.ServerCache;
-import utouu.im.net.tcp.mina.entity.vo.OffChatMsgDetail;
 import utouu.im.net.tcp.mina.process.NetProcess;
 import utouu.im.net.tcp.mina.utils.IoSender;
-import utouu.im.obj.ServiceManager;
 import utouu.im.protobuf.pb.MsgCode.GameCode;
 import utouu.im.protobuf.pb.MsgLogin.ReqSdkLogin;
 import utouu.im.protobuf.pb.MsgLogin.ResSdkLogin;
@@ -35,7 +37,7 @@ public class ReqSdkLoginProcess extends NetProcess<ReqSdkLogin>{
 		IoSender.sendMsg(sessionClient, GameCode.RES_SDK_LOGIN, ResSdkLogin.newBuilder().setLoginResult(0));
 		//拉取数据库离线消息,并将消息推送给玩家
 		ILoginService loginService = ServiceManager.getService(ILoginService.class);
-		OffChatMsgDetail detail = loginService.pullOffLineChatMsgDetail(sessionClient.getAccount());
+		List<ChatStructDto> chatStructDtos = loginService.pullOffLineChatMsgDetail(sessionClient.getAccount(),1,10);
 		
 	}
 

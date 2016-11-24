@@ -18,7 +18,7 @@ public class WorkManager extends DynamicFind{
 	protected Logger logger = LoggerFactory.getLogger(getClass());
 	private final Map<String, Class<? extends Work>> allWorks = new ConcurrentHashMap<String, Class<? extends Work>>();
 	private static WorkManager workManager = new WorkManager();
-	private final Map<WorkQueue, Worker> workers;
+	private final Map<Long, Worker> workers;
 	private final ExecutorService executor;
 
 	public static WorkManager getManager() {
@@ -27,7 +27,7 @@ public class WorkManager extends DynamicFind{
 
 	private WorkManager() {
 		this.executor = Executors.newCachedThreadPool();
-		this.workers = new ConcurrentHashMap<WorkQueue, Worker>();
+		this.workers = new ConcurrentHashMap<Long, Worker>();
 	}
 
 	public void submit(Class<? extends Work> workClass, Object... objs) {
@@ -52,11 +52,11 @@ public class WorkManager extends DynamicFind{
 		} else if (work instanceof QueueWork) {
 			QueueWork queueWork = (QueueWork) work;
 			WorkQueue workQueue = queueWork.getWorkQueue();
-
+			long queue = workQueue.getId();
 			synchronized (workers) {
-				Worker worker = workers.get(workQueue);
+				Worker worker = workers.get(queue);
 				if (worker == null) {
-					worker = createWorker(workQueue);
+					worker = createWorker(queue);
 					worker.getQueueWorks().offer(queueWork);
 					executor.submit(worker);
 					return;
@@ -71,7 +71,7 @@ public class WorkManager extends DynamicFind{
 		}
 	}
 
-	private Worker createWorker(WorkQueue workQueue) {
+	private Worker createWorker(long workQueue) {
 		Worker worker = null;
 		worker = new Worker(workQueue);
 		workers.put(workQueue, worker);
@@ -80,15 +80,15 @@ public class WorkManager extends DynamicFind{
 
 	private class Worker extends AynWork {
 		private static final long serialVersionUID = 5492935692105924020L;
-		private final WorkQueue workQueue;
+		private final long workQueue;
 		private final LinkedBlockingDeque<QueueWork> queueWorks;
 
 		@SuppressWarnings("unused")
-		public WorkQueue getWorkQueue() {
+		public long getWorkQueue() {
 			return workQueue;
 		}
 
-		public Worker(WorkQueue workQueue) {
+		public Worker(long workQueue) {
 			this.workQueue = workQueue;
 			queueWorks = new LinkedBlockingDeque<QueueWork>();
 		}

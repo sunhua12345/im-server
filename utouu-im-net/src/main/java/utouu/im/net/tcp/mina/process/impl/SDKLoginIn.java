@@ -2,11 +2,8 @@ package utouu.im.net.tcp.mina.process.impl;
 
 import org.apache.mina.core.session.IoSession;
 
-import com.google.protobuf.GeneratedMessage.Builder;
-
 import utouu.im.net.tcp.mina.SessionClient;
 import utouu.im.net.tcp.mina.process.NetProcess;
-import utouu.im.thread.WorkQueue;
 import utouu.im.utils.ConstantUtils;
 
 public abstract class SDKLoginIn<T> extends NetProcess<T>{

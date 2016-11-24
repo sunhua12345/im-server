@@ -2,8 +2,6 @@ package utouu.im.net.tcp.mina.codec.work;
 
 import utouu.im.net.tcp.mina.entity.Message;
 import utouu.im.net.tcp.mina.process.ProcessManager;
-import utouu.im.net.tcp.mina.utils.IoSender;
-import utouu.im.protobuf.pb.MsgCode.AlertType;
 import utouu.im.thread.QueueWork;
 import utouu.im.thread.Work;
 import utouu.im.thread.WorkManager;
@@ -33,9 +31,6 @@ public class PutMsgWork extends QueueWork {
 		Class<? extends Work> clazz = (Class<? extends Work>) ProcessManager.getManager().getProcess(message.getCode());
 		if (clazz != null) {
 			WorkManager.getManager().submit(clazz, message);
-		} else {
-			// 没有该处理类
-			IoSender.sendAlert(message.getIoSession(), AlertType.CAN_NOT_FIND_HANDLE);
 		}
 	}
 

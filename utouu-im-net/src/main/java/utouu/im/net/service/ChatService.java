@@ -1,38 +1,69 @@
 package utouu.im.net.service;
 
-import utouu.im.annotation.IService;
-import utouu.im.net.GlobalServerSender;
+import org.apache.mina.core.session.IoSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.google.protobuf.ByteString;
+
+import utouu.im.bean.dto.ChatStructDto;
 import utouu.im.net.service.api.IChatService;
+import utouu.im.net.service.api.IZookeeperService;
 import utouu.im.net.tcp.mina.SessionClient;
 import utouu.im.net.tcp.mina.cache.ServerCache;
+import utouu.im.net.tcp.mina.entity.vo.AccountOnlineVO;
+import utouu.im.net.tcp.mina.node.ServerNodeFactory;
 import utouu.im.net.tcp.mina.utils.IoSender;
-import utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryTextChat;
-import utouu.im.protobuf.pb.MsgChat.ResSdkSomeOnePrimaryTextChatToMe;
+import utouu.im.protobuf.pb.MsgChat.NotifySomeOnePrimaryChatToMe;
+import utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryChat;
 import utouu.im.protobuf.pb.MsgCode.GameCode;
-@IService
+import utouu.im.protobuf.pb.MsgNode.NotifyNodeSomeOnePrimaryChatToMe;
+@Service(value="IChatService")
 public class ChatService extends BaseService implements IChatService{
-
+	@Autowired
+	private IZookeeperService zookeeperService;
 	@Override
-	public void primaryTextChat(SessionClient client, String otherAccount, String chatText) {
-		ResSdkPrimaryTextChat.Builder builder = ResSdkPrimaryTextChat.newBuilder();
-		builder.setPrimaryTextChatResult(0);
-		boolean onlineCurNode = ServerCache.checkOnlineCurrentZnode(otherAccount);
-		if(onlineCurNode){
-			SessionClient otherClient = ServerCache.getClient(otherAccount);
-			ResSdkSomeOnePrimaryTextChatToMe.Builder builder2 = ResSdkSomeOnePrimaryTextChatToMe.newBuilder();
-			builder2.setChatText(chatText);
-			builder2.setFromAccount(client.getAccount());
-			IoSender.sendMsg(otherClient, GameCode.RES_SDK_SOMEONEPRIMARYTEXTCHATTOME, builder2);
-		}else{
-			//当前节点不在线,可能在其它服务器节点,通过zookeeper来进行数据一致性操作
-			boolean online = GlobalServerSender.getOnlineCheckAllZnode(otherAccount);
-			if(online){
-				//账号在其它znode在线,通过zookeeper协调一致性,发起推送消息
+	public void primaryChat(SessionClient client, ReqSdkPrimaryChat message) {
+		String toAccount = message.getToAccount();
+		int type = message.getType();
+		String text = message.getText();
+		ByteString byteString = message.getMediaBytes();
+		AccountOnlineVO vo = zookeeperService.checkAccountOnline(toAccount);
+		if(vo!=null){
+			//在线
+			String localServerIpPort = ZookeeperService.address+"-"+ZookeeperService.port;
+			String temp = vo.getHostIp()+"-"+vo.getHostPort();
+			if(localServerIpPort.equals(temp)){
+				SessionClient to = ServerCache.getClient(toAccount);
+				if(to!=null){
+					//在本服务器节点,直接推送消息
+					NotifySomeOnePrimaryChatToMe.Builder builder = NotifySomeOnePrimaryChatToMe.newBuilder();
+					builder.setFromAccount(client.getAccount());
+					builder.setType(type);
+					builder.setText(text);
+					builder.setMediaBytes(byteString);
+					IoSender.sendMsg(to, GameCode.NOTIFY_SOMEONE_PRIMARY_CHAT_TO_ME, builder);
+				}else{
+					//不在线,在这里可以异步保存离线信息
+				}
 			}else{
-				//所有znode节点都不在线,进行消息入库,保证下次用户上线能够拉取数据
+				//在其它服务器节点,跨服务器推送消息
+				String ip = vo.getHostIp();
+				int port = vo.getHostPort();
+				IoSession nodeSession = ServerNodeFactory.getFactory().getNodeServer(ip,port);
+				NotifyNodeSomeOnePrimaryChatToMe.Builder builder = NotifyNodeSomeOnePrimaryChatToMe.newBuilder();
+				builder.setFromAccount(client.getAccount());
+				builder.setMediaBytes(byteString);
+				builder.setServerip(ZookeeperService.address);
+				builder.setServerport(ZookeeperService.port);
+				builder.setText(text);
+				builder.setToAccount(toAccount);
+				builder.setType(type);
+				IoSender.sendMsg(nodeSession, GameCode.NOTIFY_NODE_SOMEONE_PRIMARYCHAT_TO_ME, builder);
 			}
+		}else{
+			//不在线,在这里可以异步保存离线信息
 		}
-		IoSender.sendMsg(client, GameCode.RES_SDK_PRIMARYTEXTCHAT, builder);
 	}
 
 }

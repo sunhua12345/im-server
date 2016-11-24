@@ -44,7 +44,7 @@ public final class MsgLogin {
    * Protobuf type {@code ProtoNet.ReqSdkLogin}
    *
    * <pre>
-   *REQ_SDK_LOGIN = 100001;//sdk请求登录im服务器
+   *REQ_SDK_LOGIN = 100001;//sdk请求登录
    * </pre>
    */
   public static final class ReqSdkLogin extends
@@ -362,7 +362,7 @@ public final class MsgLogin {
      * Protobuf type {@code ProtoNet.ReqSdkLogin}
      *
      * <pre>
-     *REQ_SDK_LOGIN = 100001;//sdk请求登录im服务器
+     *REQ_SDK_LOGIN = 100001;//sdk请求登录
      * </pre>
      */
     public static final class Builder extends

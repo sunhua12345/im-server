@@ -1,14 +1,17 @@
 package utouu.im.net.service;
 
+import java.util.List;
 
-import utouu.im.annotation.IService;
+import org.springframework.stereotype.Service;
+
+import utouu.im.bean.dto.ChatStructDto;
 import utouu.im.net.service.api.ILoginService;
-import utouu.im.net.tcp.mina.entity.vo.OffChatMsgDetail;
-@IService
-public class LoginService extends BaseService implements ILoginService{
+
+@Service(value="ILoginService")
+public class LoginService extends BaseService implements ILoginService {
 
 	@Override
-	public OffChatMsgDetail pullOffLineChatMsgDetail(String account) {
+	public List<ChatStructDto> pullOffLineChatMsgDetail(String account, int page, int pageLength) {
 		return null;
 	}
 

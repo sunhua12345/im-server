@@ -1,6 +1,5 @@
 package utouu.im.bean.dto;
 
-import utouu.im.bean.dto.entity.ChatBody;
 import utouu.im.bean.dto.utils.StringHelper;
 
 public class ChatStructDto {
@@ -8,7 +7,7 @@ public class ChatStructDto {
 	private String fromAccount;
 	private String toAccount;
 	private long sendTime;
-	private ChatBody body;
+	private String body;
 	private boolean offlineMsg;
 	public String getMsgid() {
 		return msgid;
@@ -34,16 +33,16 @@ public class ChatStructDto {
 	public void setSendTime(long sendTime) {
 		this.sendTime = sendTime;
 	}
-	public ChatBody getBody() {
-		return body;
-	}
-	public void setBody(ChatBody body) {
-		this.body = body;
-	}
 	public boolean isOfflineMsg() {
 		return offlineMsg;
 	}
 	public void setOfflineMsg(boolean offlineMsg) {
 		this.offlineMsg = offlineMsg;
+	}
+	public String getBody() {
+		return body;
+	}
+	public void setBody(String body) {
+		this.body = body;
 	}
 }

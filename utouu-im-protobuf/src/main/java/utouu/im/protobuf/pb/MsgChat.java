@@ -8,8 +8,8 @@ public final class MsgChat {
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
   }
-  public interface ReqSdkPrimaryTextChatOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:ProtoNet.ReqSdkPrimaryTextChat)
+  public interface ReqSdkPrimaryChatOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ProtoNet.ReqSdkPrimaryChat)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -39,55 +39,89 @@ public final class MsgChat {
         getToAccountBytes();
 
     /**
-     * <code>required string chatText = 2;</code>
+     * <code>required int32 type = 2;</code>
      *
      * <pre>
-     *发送内容
+     *聊天类型
      * </pre>
      */
-    boolean hasChatText();
+    boolean hasType();
     /**
-     * <code>required string chatText = 2;</code>
+     * <code>required int32 type = 2;</code>
      *
      * <pre>
-     *发送内容
+     *聊天类型
      * </pre>
      */
-    java.lang.String getChatText();
+    int getType();
+
     /**
-     * <code>required string chatText = 2;</code>
+     * <code>optional string text = 3;</code>
      *
      * <pre>
-     *发送内容
+     *文字聊天内容
+     * </pre>
+     */
+    boolean hasText();
+    /**
+     * <code>optional string text = 3;</code>
+     *
+     * <pre>
+     *文字聊天内容
+     * </pre>
+     */
+    java.lang.String getText();
+    /**
+     * <code>optional string text = 3;</code>
+     *
+     * <pre>
+     *文字聊天内容
      * </pre>
      */
     com.google.protobuf.ByteString
-        getChatTextBytes();
+        getTextBytes();
+
+    /**
+     * <code>optional bytes mediaBytes = 4;</code>
+     *
+     * <pre>
+     *音频文件二进制流
+     * </pre>
+     */
+    boolean hasMediaBytes();
+    /**
+     * <code>optional bytes mediaBytes = 4;</code>
+     *
+     * <pre>
+     *音频文件二进制流
+     * </pre>
+     */
+    com.google.protobuf.ByteString getMediaBytes();
   }
   /**
-   * Protobuf type {@code ProtoNet.ReqSdkPrimaryTextChat}
+   * Protobuf type {@code ProtoNet.ReqSdkPrimaryChat}
    *
    * <pre>
-   *REQ_SDK_PRIMARYTEXTCHAT = 200001;//sdk请求文字私聊别人
+   *REQ_SDK_PRIMARY_CHAT = 200001;//sdk请求文字私聊别人
    * </pre>
    */
-  public static final class ReqSdkPrimaryTextChat extends
+  public static final class ReqSdkPrimaryChat extends
       com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:ProtoNet.ReqSdkPrimaryTextChat)
-      ReqSdkPrimaryTextChatOrBuilder {
-    // Use ReqSdkPrimaryTextChat.newBuilder() to construct.
-    private ReqSdkPrimaryTextChat(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      // @@protoc_insertion_point(message_implements:ProtoNet.ReqSdkPrimaryChat)
+      ReqSdkPrimaryChatOrBuilder {
+    // Use ReqSdkPrimaryChat.newBuilder() to construct.
+    private ReqSdkPrimaryChat(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
       this.unknownFields = builder.getUnknownFields();
     }
-    private ReqSdkPrimaryTextChat(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+    private ReqSdkPrimaryChat(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
 
-    private static final ReqSdkPrimaryTextChat defaultInstance;
-    public static ReqSdkPrimaryTextChat getDefaultInstance() {
+    private static final ReqSdkPrimaryChat defaultInstance;
+    public static ReqSdkPrimaryChat getDefaultInstance() {
       return defaultInstance;
     }
 
-    public ReqSdkPrimaryTextChat getDefaultInstanceForType() {
+    public ReqSdkPrimaryChat getDefaultInstanceForType() {
       return defaultInstance;
     }
 
@@ -97,7 +131,7 @@ public final class MsgChat {
         getUnknownFields() {
       return this.unknownFields;
     }
-    private ReqSdkPrimaryTextChat(
+    private ReqSdkPrimaryChat(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -126,10 +160,20 @@ public final class MsgChat {
               toAccount_ = bs;
               break;
             }
-            case 18: {
-              com.google.protobuf.ByteString bs = input.readBytes();
+            case 16: {
               bitField0_ |= 0x00000002;
-              chatText_ = bs;
+              type_ = input.readInt32();
+              break;
+            }
+            case 26: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00000004;
+              text_ = bs;
+              break;
+            }
+            case 34: {
+              bitField0_ |= 0x00000008;
+              mediaBytes_ = input.readBytes();
               break;
             }
           }
@@ -146,28 +190,28 @@ public final class MsgChat {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return utouu.im.protobuf.pb.MsgChat.internal_static_ProtoNet_ReqSdkPrimaryTextChat_descriptor;
+      return utouu.im.protobuf.pb.MsgChat.internal_static_ProtoNet_ReqSdkPrimaryChat_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return utouu.im.protobuf.pb.MsgChat.internal_static_ProtoNet_ReqSdkPrimaryTextChat_fieldAccessorTable
+      return utouu.im.protobuf.pb.MsgChat.internal_static_ProtoNet_ReqSdkPrimaryChat_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryTextChat.class, utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryTextChat.Builder.class);
+              utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryChat.class, utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryChat.Builder.class);
     }
 
-    public static com.google.protobuf.Parser<ReqSdkPrimaryTextChat> PARSER =
-        new com.google.protobuf.AbstractParser<ReqSdkPrimaryTextChat>() {
-      public ReqSdkPrimaryTextChat parsePartialFrom(
+    public static com.google.protobuf.Parser<ReqSdkPrimaryChat> PARSER =
+        new com.google.protobuf.AbstractParser<ReqSdkPrimaryChat>() {
+      public ReqSdkPrimaryChat parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ReqSdkPrimaryTextChat(input, extensionRegistry);
+        return new ReqSdkPrimaryChat(input, extensionRegistry);
       }
     };
 
     @java.lang.Override
-    public com.google.protobuf.Parser<ReqSdkPrimaryTextChat> getParserForType() {
+    public com.google.protobuf.Parser<ReqSdkPrimaryChat> getParserForType() {
       return PARSER;
     }
 
@@ -226,27 +270,50 @@ public final class MsgChat {
       }
     }
 
-    public static final int CHATTEXT_FIELD_NUMBER = 2;
-    private java.lang.Object chatText_;
+    public static final int TYPE_FIELD_NUMBER = 2;
+    private int type_;
     /**
-     * <code>required string chatText = 2;</code>
+     * <code>required int32 type = 2;</code>
      *
      * <pre>
-     *发送内容
+     *聊天类型
      * </pre>
      */
-    public boolean hasChatText() {
+    public boolean hasType() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>required string chatText = 2;</code>
+     * <code>required int32 type = 2;</code>
      *
      * <pre>
-     *发送内容
+     *聊天类型
      * </pre>
      */
-    public java.lang.String getChatText() {
-      java.lang.Object ref = chatText_;
+    public int getType() {
+      return type_;
+    }
+
+    public static final int TEXT_FIELD_NUMBER = 3;
+    private java.lang.Object text_;
+    /**
+     * <code>optional string text = 3;</code>
+     *
+     * <pre>
+     *文字聊天内容
+     * </pre>
+     */
+    public boolean hasText() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional string text = 3;</code>
+     *
+     * <pre>
+     *文字聊天内容
+     * </pre>
+     */
+    public java.lang.String getText() {
+      java.lang.Object ref = text_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
@@ -254,35 +321,60 @@ public final class MsgChat {
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         if (bs.isValidUtf8()) {
-          chatText_ = s;
+          text_ = s;
         }
         return s;
       }
     }
     /**
-     * <code>required string chatText = 2;</code>
+     * <code>optional string text = 3;</code>
      *
      * <pre>
-     *发送内容
+     *文字聊天内容
      * </pre>
      */
     public com.google.protobuf.ByteString
-        getChatTextBytes() {
-      java.lang.Object ref = chatText_;
+        getTextBytes() {
+      java.lang.Object ref = text_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        chatText_ = b;
+        text_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
 
+    public static final int MEDIABYTES_FIELD_NUMBER = 4;
+    private com.google.protobuf.ByteString mediaBytes_;
+    /**
+     * <code>optional bytes mediaBytes = 4;</code>
+     *
+     * <pre>
+     *音频文件二进制流
+     * </pre>
+     */
+    public boolean hasMediaBytes() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    /**
+     * <code>optional bytes mediaBytes = 4;</code>
+     *
+     * <pre>
+     *音频文件二进制流
+     * </pre>
+     */
+    public com.google.protobuf.ByteString getMediaBytes() {
+      return mediaBytes_;
+    }
+
     private void initFields() {
       toAccount_ = "";
-      chatText_ = "";
+      type_ = 0;
+      text_ = "";
+      mediaBytes_ = com.google.protobuf.ByteString.EMPTY;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -294,7 +386,7 @@ public final class MsgChat {
         memoizedIsInitialized = 0;
         return false;
       }
-      if (!hasChatText()) {
+      if (!hasType()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -309,7 +401,13 @@ public final class MsgChat {
         output.writeBytes(1, getToAccountBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, getChatTextBytes());
+        output.writeInt32(2, type_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeBytes(3, getTextBytes());
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeBytes(4, mediaBytes_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -326,7 +424,15 @@ public final class MsgChat {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, getChatTextBytes());
+          .computeInt32Size(2, type_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(3, getTextBytes());
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(4, mediaBytes_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -340,53 +446,53 @@ public final class MsgChat {
       return super.writeReplace();
     }
 
-    public static utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryTextChat parseFrom(
+    public static utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryChat parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryTextChat parseFrom(
+    public static utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryChat parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryTextChat parseFrom(byte[] data)
+    public static utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryChat parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryTextChat parseFrom(
+    public static utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryChat parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryTextChat parseFrom(java.io.InputStream input)
+    public static utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryChat parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryTextChat parseFrom(
+    public static utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryChat parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseFrom(input, extensionRegistry);
     }
-    public static utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryTextChat parseDelimitedFrom(java.io.InputStream input)
+    public static utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryChat parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input);
     }
-    public static utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryTextChat parseDelimitedFrom(
+    public static utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryChat parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
-    public static utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryTextChat parseFrom(
+    public static utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryChat parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryTextChat parseFrom(
+    public static utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryChat parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -395,7 +501,7 @@ public final class MsgChat {
 
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryTextChat prototype) {
+    public static Builder newBuilder(utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryChat prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -407,29 +513,29 @@ public final class MsgChat {
       return builder;
     }
     /**
-     * Protobuf type {@code ProtoNet.ReqSdkPrimaryTextChat}
+     * Protobuf type {@code ProtoNet.ReqSdkPrimaryChat}
      *
      * <pre>
-     *REQ_SDK_PRIMARYTEXTCHAT = 200001;//sdk请求文字私聊别人
+     *REQ_SDK_PRIMARY_CHAT = 200001;//sdk请求文字私聊别人
      * </pre>
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:ProtoNet.ReqSdkPrimaryTextChat)
-        utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryTextChatOrBuilder {
+        // @@protoc_insertion_point(builder_implements:ProtoNet.ReqSdkPrimaryChat)
+        utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryChatOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return utouu.im.protobuf.pb.MsgChat.internal_static_ProtoNet_ReqSdkPrimaryTextChat_descriptor;
+        return utouu.im.protobuf.pb.MsgChat.internal_static_ProtoNet_ReqSdkPrimaryChat_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return utouu.im.protobuf.pb.MsgChat.internal_static_ProtoNet_ReqSdkPrimaryTextChat_fieldAccessorTable
+        return utouu.im.protobuf.pb.MsgChat.internal_static_ProtoNet_ReqSdkPrimaryChat_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryTextChat.class, utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryTextChat.Builder.class);
+                utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryChat.class, utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryChat.Builder.class);
       }
 
-      // Construct using utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryTextChat.newBuilder()
+      // Construct using utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryChat.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -451,8 +557,12 @@ public final class MsgChat {
         super.clear();
         toAccount_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
-        chatText_ = "";
+        type_ = 0;
         bitField0_ = (bitField0_ & ~0x00000002);
+        text_ = "";
+        bitField0_ = (bitField0_ & ~0x00000004);
+        mediaBytes_ = com.google.protobuf.ByteString.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
 
@@ -462,23 +572,23 @@ public final class MsgChat {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return utouu.im.protobuf.pb.MsgChat.internal_static_ProtoNet_ReqSdkPrimaryTextChat_descriptor;
+        return utouu.im.protobuf.pb.MsgChat.internal_static_ProtoNet_ReqSdkPrimaryChat_descriptor;
       }
 
-      public utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryTextChat getDefaultInstanceForType() {
-        return utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryTextChat.getDefaultInstance();
+      public utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryChat getDefaultInstanceForType() {
+        return utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryChat.getDefaultInstance();
       }
 
-      public utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryTextChat build() {
-        utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryTextChat result = buildPartial();
+      public utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryChat build() {
+        utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryChat result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryTextChat buildPartial() {
-        utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryTextChat result = new utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryTextChat(this);
+      public utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryChat buildPartial() {
+        utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryChat result = new utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryChat(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -488,32 +598,46 @@ public final class MsgChat {
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.chatText_ = chatText_;
+        result.type_ = type_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.text_ = text_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.mediaBytes_ = mediaBytes_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
 
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryTextChat) {
-          return mergeFrom((utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryTextChat)other);
+        if (other instanceof utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryChat) {
+          return mergeFrom((utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryChat)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryTextChat other) {
-        if (other == utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryTextChat.getDefaultInstance()) return this;
+      public Builder mergeFrom(utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryChat other) {
+        if (other == utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryChat.getDefaultInstance()) return this;
         if (other.hasToAccount()) {
           bitField0_ |= 0x00000001;
           toAccount_ = other.toAccount_;
           onChanged();
         }
-        if (other.hasChatText()) {
-          bitField0_ |= 0x00000002;
-          chatText_ = other.chatText_;
+        if (other.hasType()) {
+          setType(other.getType());
+        }
+        if (other.hasText()) {
+          bitField0_ |= 0x00000004;
+          text_ = other.text_;
           onChanged();
+        }
+        if (other.hasMediaBytes()) {
+          setMediaBytes(other.getMediaBytes());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -524,7 +648,7 @@ public final class MsgChat {
           
           return false;
         }
-        if (!hasChatText()) {
+        if (!hasType()) {
           
           return false;
         }
@@ -535,11 +659,11 @@ public final class MsgChat {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryTextChat parsedMessage = null;
+        utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryChat parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryTextChat) e.getUnfinishedMessage();
+          parsedMessage = (utouu.im.protobuf.pb.MsgChat.ReqSdkPrimaryChat) e.getUnfinishedMessage();
           throw e;
         } finally {
           if (parsedMessage != null) {
@@ -650,32 +774,80 @@ public final class MsgChat {
         return this;
       }
 
-      private java.lang.Object chatText_ = "";
+      private int type_ ;
       /**
-       * <code>required string chatText = 2;</code>
+       * <code>required int32 type = 2;</code>
        *
        * <pre>
-       *发送内容
+       *聊天类型
        * </pre>
        */
-      public boolean hasChatText() {
+      public boolean hasType() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>required string chatText = 2;</code>
+       * <code>required int32 type = 2;</code>
        *
        * <pre>
-       *发送内容
+       *聊天类型
        * </pre>
        */
-      public java.lang.String getChatText() {
-        java.lang.Object ref = chatText_;
+      public int getType() {
+        return type_;
+      }
+      /**
+       * <code>required int32 type = 2;</code>
+       *
+       * <pre>
+       *聊天类型
+       * </pre>
+       */
+      public Builder setType(int value) {
+        bitField0_ |= 0x00000002;
+        type_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required int32 type = 2;</code>
+       *
+       * <pre>
+       *聊天类型
+       * </pre>
+       */
+      public Builder clearType() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        type_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object text_ = "";
+      /**
+       * <code>optional string text = 3;</code>
+       *
+       * <pre>
+       *文字聊天内容
+       * </pre>
+       */
+      public boolean hasText() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional string text = 3;</code>
+       *
+       * <pre>
+       *文字聊天内容
+       * </pre>
+       */
+      public java.lang.String getText() {
+        java.lang.Object ref = text_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
           if (bs.isValidUtf8()) {
-            chatText_ = s;
+            text_ = s;
           }
           return s;
         } else {
@@ -683,129 +855,180 @@ public final class MsgChat {
         }
       }
       /**
-       * <code>required string chatText = 2;</code>
+       * <code>optional string text = 3;</code>
        *
        * <pre>
-       *发送内容
+       *文字聊天内容
        * </pre>
        */
       public com.google.protobuf.ByteString
-          getChatTextBytes() {
-        java.lang.Object ref = chatText_;
+          getTextBytes() {
+        java.lang.Object ref = text_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          chatText_ = b;
+          text_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>required string chatText = 2;</code>
+       * <code>optional string text = 3;</code>
        *
        * <pre>
-       *发送内容
+       *文字聊天内容
        * </pre>
        */
-      public Builder setChatText(
+      public Builder setText(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
-        chatText_ = value;
+  bitField0_ |= 0x00000004;
+        text_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required string chatText = 2;</code>
+       * <code>optional string text = 3;</code>
        *
        * <pre>
-       *发送内容
+       *文字聊天内容
        * </pre>
        */
-      public Builder clearChatText() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        chatText_ = getDefaultInstance().getChatText();
+      public Builder clearText() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        text_ = getDefaultInstance().getText();
         onChanged();
         return this;
       }
       /**
-       * <code>required string chatText = 2;</code>
+       * <code>optional string text = 3;</code>
        *
        * <pre>
-       *发送内容
+       *文字聊天内容
        * </pre>
        */
-      public Builder setChatTextBytes(
+      public Builder setTextBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
-        chatText_ = value;
+  bitField0_ |= 0x00000004;
+        text_ = value;
         onChanged();
         return this;
       }
 
-      // @@protoc_insertion_point(builder_scope:ProtoNet.ReqSdkPrimaryTextChat)
+      private com.google.protobuf.ByteString mediaBytes_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>optional bytes mediaBytes = 4;</code>
+       *
+       * <pre>
+       *音频文件二进制流
+       * </pre>
+       */
+      public boolean hasMediaBytes() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>optional bytes mediaBytes = 4;</code>
+       *
+       * <pre>
+       *音频文件二进制流
+       * </pre>
+       */
+      public com.google.protobuf.ByteString getMediaBytes() {
+        return mediaBytes_;
+      }
+      /**
+       * <code>optional bytes mediaBytes = 4;</code>
+       *
+       * <pre>
+       *音频文件二进制流
+       * </pre>
+       */
+      public Builder setMediaBytes(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+        mediaBytes_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bytes mediaBytes = 4;</code>
+       *
+       * <pre>
+       *音频文件二进制流
+       * </pre>
+       */
+      public Builder clearMediaBytes() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        mediaBytes_ = getDefaultInstance().getMediaBytes();
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:ProtoNet.ReqSdkPrimaryChat)
     }
 
     static {
-      defaultInstance = new ReqSdkPrimaryTextChat(true);
+      defaultInstance = new ReqSdkPrimaryChat(true);
       defaultInstance.initFields();
     }
 
-    // @@protoc_insertion_point(class_scope:ProtoNet.ReqSdkPrimaryTextChat)
+    // @@protoc_insertion_point(class_scope:ProtoNet.ReqSdkPrimaryChat)
   }
 
-  public interface ResSdkPrimaryTextChatOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:ProtoNet.ResSdkPrimaryTextChat)
+  public interface ResSdkPrimaryChatOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ProtoNet.ResSdkPrimaryChat)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>required int32 primaryTextChatResult = 1;</code>
+     * <code>required int32 result = 1;</code>
      *
      * <pre>
      *0代表聊天发送成功,1代表聊天发送失败,其他枚举后续定义
      * </pre>
      */
-    boolean hasPrimaryTextChatResult();
+    boolean hasResult();
     /**
-     * <code>required int32 primaryTextChatResult = 1;</code>
+     * <code>required int32 result = 1;</code>
      *
      * <pre>
      *0代表聊天发送成功,1代表聊天发送失败,其他枚举后续定义
      * </pre>
      */
-    int getPrimaryTextChatResult();
+    int getResult();
   }
   /**
-   * Protobuf type {@code ProtoNet.ResSdkPrimaryTextChat}
+   * Protobuf type {@code ProtoNet.ResSdkPrimaryChat}
    *
    * <pre>
-   *RES_SDK_PRIMARYTEXTCHAT  = 200002;
+   *RES_SDK_PRIMARY_CHAT  = 200002;//sdk返回文字私聊别人
    * </pre>
    */
-  public static final class ResSdkPrimaryTextChat extends
+  public static final class ResSdkPrimaryChat extends
       com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:ProtoNet.ResSdkPrimaryTextChat)
-      ResSdkPrimaryTextChatOrBuilder {
-    // Use ResSdkPrimaryTextChat.newBuilder() to construct.
-    private ResSdkPrimaryTextChat(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      // @@protoc_insertion_point(message_implements:ProtoNet.ResSdkPrimaryChat)
+      ResSdkPrimaryChatOrBuilder {
+    // Use ResSdkPrimaryChat.newBuilder() to construct.
+    private ResSdkPrimaryChat(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
       this.unknownFields = builder.getUnknownFields();
     }
-    private ResSdkPrimaryTextChat(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+    private ResSdkPrimaryChat(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
 
-    private static final ResSdkPrimaryTextChat defaultInstance;
-    public static ResSdkPrimaryTextChat getDefaultInstance() {
+    private static final ResSdkPrimaryChat defaultInstance;
+    public static ResSdkPrimaryChat getDefaultInstance() {
       return defaultInstance;
     }
 
-    public ResSdkPrimaryTextChat getDefaultInstanceForType() {
+    public ResSdkPrimaryChat getDefaultInstanceForType() {
       return defaultInstance;
     }
 
@@ -815,7 +1038,7 @@ public final class MsgChat {
         getUnknownFields() {
       return this.unknownFields;
     }
-    private ResSdkPrimaryTextChat(
+    private ResSdkPrimaryChat(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -840,7 +1063,7 @@ public final class MsgChat {
             }
             case 8: {
               bitField0_ |= 0x00000001;
-              primaryTextChatResult_ = input.readInt32();
+              result_ = input.readInt32();
               break;
             }
           }
@@ -857,57 +1080,57 @@ public final class MsgChat {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return utouu.im.protobuf.pb.MsgChat.internal_static_ProtoNet_ResSdkPrimaryTextChat_descriptor;
+      return utouu.im.protobuf.pb.MsgChat.internal_static_ProtoNet_ResSdkPrimaryChat_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return utouu.im.protobuf.pb.MsgChat.internal_static_ProtoNet_ResSdkPrimaryTextChat_fieldAccessorTable
+      return utouu.im.protobuf.pb.MsgChat.internal_static_ProtoNet_ResSdkPrimaryChat_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryTextChat.class, utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryTextChat.Builder.class);
+              utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryChat.class, utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryChat.Builder.class);
     }
 
-    public static com.google.protobuf.Parser<ResSdkPrimaryTextChat> PARSER =
-        new com.google.protobuf.AbstractParser<ResSdkPrimaryTextChat>() {
-      public ResSdkPrimaryTextChat parsePartialFrom(
+    public static com.google.protobuf.Parser<ResSdkPrimaryChat> PARSER =
+        new com.google.protobuf.AbstractParser<ResSdkPrimaryChat>() {
+      public ResSdkPrimaryChat parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ResSdkPrimaryTextChat(input, extensionRegistry);
+        return new ResSdkPrimaryChat(input, extensionRegistry);
       }
     };
 
     @java.lang.Override
-    public com.google.protobuf.Parser<ResSdkPrimaryTextChat> getParserForType() {
+    public com.google.protobuf.Parser<ResSdkPrimaryChat> getParserForType() {
       return PARSER;
     }
 
     private int bitField0_;
-    public static final int PRIMARYTEXTCHATRESULT_FIELD_NUMBER = 1;
-    private int primaryTextChatResult_;
+    public static final int RESULT_FIELD_NUMBER = 1;
+    private int result_;
     /**
-     * <code>required int32 primaryTextChatResult = 1;</code>
+     * <code>required int32 result = 1;</code>
      *
      * <pre>
      *0代表聊天发送成功,1代表聊天发送失败,其他枚举后续定义
      * </pre>
      */
-    public boolean hasPrimaryTextChatResult() {
+    public boolean hasResult() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>required int32 primaryTextChatResult = 1;</code>
+     * <code>required int32 result = 1;</code>
      *
      * <pre>
      *0代表聊天发送成功,1代表聊天发送失败,其他枚举后续定义
      * </pre>
      */
-    public int getPrimaryTextChatResult() {
-      return primaryTextChatResult_;
+    public int getResult() {
+      return result_;
     }
 
     private void initFields() {
-      primaryTextChatResult_ = 0;
+      result_ = 0;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -915,7 +1138,7 @@ public final class MsgChat {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
-      if (!hasPrimaryTextChatResult()) {
+      if (!hasResult()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -927,7 +1150,7 @@ public final class MsgChat {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeInt32(1, primaryTextChatResult_);
+        output.writeInt32(1, result_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -940,7 +1163,7 @@ public final class MsgChat {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, primaryTextChatResult_);
+          .computeInt32Size(1, result_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -954,53 +1177,53 @@ public final class MsgChat {
       return super.writeReplace();
     }
 
-    public static utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryTextChat parseFrom(
+    public static utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryChat parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryTextChat parseFrom(
+    public static utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryChat parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryTextChat parseFrom(byte[] data)
+    public static utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryChat parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryTextChat parseFrom(
+    public static utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryChat parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryTextChat parseFrom(java.io.InputStream input)
+    public static utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryChat parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryTextChat parseFrom(
+    public static utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryChat parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseFrom(input, extensionRegistry);
     }
-    public static utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryTextChat parseDelimitedFrom(java.io.InputStream input)
+    public static utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryChat parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input);
     }
-    public static utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryTextChat parseDelimitedFrom(
+    public static utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryChat parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
-    public static utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryTextChat parseFrom(
+    public static utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryChat parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryTextChat parseFrom(
+    public static utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryChat parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1009,7 +1232,7 @@ public final class MsgChat {
 
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryTextChat prototype) {
+    public static Builder newBuilder(utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryChat prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -1021,29 +1244,29 @@ public final class MsgChat {
       return builder;
     }
     /**
-     * Protobuf type {@code ProtoNet.ResSdkPrimaryTextChat}
+     * Protobuf type {@code ProtoNet.ResSdkPrimaryChat}
      *
      * <pre>
-     *RES_SDK_PRIMARYTEXTCHAT  = 200002;
+     *RES_SDK_PRIMARY_CHAT  = 200002;//sdk返回文字私聊别人
      * </pre>
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:ProtoNet.ResSdkPrimaryTextChat)
-        utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryTextChatOrBuilder {
+        // @@protoc_insertion_point(builder_implements:ProtoNet.ResSdkPrimaryChat)
+        utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryChatOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return utouu.im.protobuf.pb.MsgChat.internal_static_ProtoNet_ResSdkPrimaryTextChat_descriptor;
+        return utouu.im.protobuf.pb.MsgChat.internal_static_ProtoNet_ResSdkPrimaryChat_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return utouu.im.protobuf.pb.MsgChat.internal_static_ProtoNet_ResSdkPrimaryTextChat_fieldAccessorTable
+        return utouu.im.protobuf.pb.MsgChat.internal_static_ProtoNet_ResSdkPrimaryChat_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryTextChat.class, utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryTextChat.Builder.class);
+                utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryChat.class, utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryChat.Builder.class);
       }
 
-      // Construct using utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryTextChat.newBuilder()
+      // Construct using utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryChat.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -1063,7 +1286,7 @@ public final class MsgChat {
 
       public Builder clear() {
         super.clear();
-        primaryTextChatResult_ = 0;
+        result_ = 0;
         bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
@@ -1074,54 +1297,54 @@ public final class MsgChat {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return utouu.im.protobuf.pb.MsgChat.internal_static_ProtoNet_ResSdkPrimaryTextChat_descriptor;
+        return utouu.im.protobuf.pb.MsgChat.internal_static_ProtoNet_ResSdkPrimaryChat_descriptor;
       }
 
-      public utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryTextChat getDefaultInstanceForType() {
-        return utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryTextChat.getDefaultInstance();
+      public utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryChat getDefaultInstanceForType() {
+        return utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryChat.getDefaultInstance();
       }
 
-      public utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryTextChat build() {
-        utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryTextChat result = buildPartial();
+      public utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryChat build() {
+        utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryChat result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryTextChat buildPartial() {
-        utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryTextChat result = new utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryTextChat(this);
+      public utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryChat buildPartial() {
+        utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryChat result = new utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryChat(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.primaryTextChatResult_ = primaryTextChatResult_;
+        result.result_ = result_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
 
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryTextChat) {
-          return mergeFrom((utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryTextChat)other);
+        if (other instanceof utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryChat) {
+          return mergeFrom((utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryChat)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryTextChat other) {
-        if (other == utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryTextChat.getDefaultInstance()) return this;
-        if (other.hasPrimaryTextChatResult()) {
-          setPrimaryTextChatResult(other.getPrimaryTextChatResult());
+      public Builder mergeFrom(utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryChat other) {
+        if (other == utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryChat.getDefaultInstance()) return this;
+        if (other.hasResult()) {
+          setResult(other.getResult());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
 
       public final boolean isInitialized() {
-        if (!hasPrimaryTextChatResult()) {
+        if (!hasResult()) {
           
           return false;
         }
@@ -1132,11 +1355,11 @@ public final class MsgChat {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryTextChat parsedMessage = null;
+        utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryChat parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryTextChat) e.getUnfinishedMessage();
+          parsedMessage = (utouu.im.protobuf.pb.MsgChat.ResSdkPrimaryChat) e.getUnfinishedMessage();
           throw e;
         } finally {
           if (parsedMessage != null) {
@@ -1147,67 +1370,67 @@ public final class MsgChat {
       }
       private int bitField0_;
 
-      private int primaryTextChatResult_ ;
+      private int result_ ;
       /**
-       * <code>required int32 primaryTextChatResult = 1;</code>
+       * <code>required int32 result = 1;</code>
        *
        * <pre>
        *0代表聊天发送成功,1代表聊天发送失败,其他枚举后续定义
        * </pre>
        */
-      public boolean hasPrimaryTextChatResult() {
+      public boolean hasResult() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>required int32 primaryTextChatResult = 1;</code>
+       * <code>required int32 result = 1;</code>
        *
        * <pre>
        *0代表聊天发送成功,1代表聊天发送失败,其他枚举后续定义
        * </pre>
        */
-      public int getPrimaryTextChatResult() {
-        return primaryTextChatResult_;
+      public int getResult() {
+        return result_;
       }
       /**
-       * <code>required int32 primaryTextChatResult = 1;</code>
+       * <code>required int32 result = 1;</code>
        *
        * <pre>
        *0代表聊天发送成功,1代表聊天发送失败,其他枚举后续定义
        * </pre>
        */
-      public Builder setPrimaryTextChatResult(int value) {
+      public Builder setResult(int value) {
         bitField0_ |= 0x00000001;
-        primaryTextChatResult_ = value;
+        result_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required int32 primaryTextChatResult = 1;</code>
+       * <code>required int32 result = 1;</code>
        *
        * <pre>
        *0代表聊天发送成功,1代表聊天发送失败,其他枚举后续定义
        * </pre>
        */
-      public Builder clearPrimaryTextChatResult() {
+      public Builder clearResult() {
         bitField0_ = (bitField0_ & ~0x00000001);
-        primaryTextChatResult_ = 0;
+        result_ = 0;
         onChanged();
         return this;
       }
 
-      // @@protoc_insertion_point(builder_scope:ProtoNet.ResSdkPrimaryTextChat)
+      // @@protoc_insertion_point(builder_scope:ProtoNet.ResSdkPrimaryChat)
     }
 
     static {
-      defaultInstance = new ResSdkPrimaryTextChat(true);
+      defaultInstance = new ResSdkPrimaryChat(true);
       defaultInstance.initFields();
     }
 
-    // @@protoc_insertion_point(class_scope:ProtoNet.ResSdkPrimaryTextChat)
+    // @@protoc_insertion_point(class_scope:ProtoNet.ResSdkPrimaryChat)
   }
 
-  public interface ResSdkSomeOnePrimaryTextChatToMeOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:ProtoNet.ResSdkSomeOnePrimaryTextChatToMe)
+  public interface NotifySomeOnePrimaryChatToMeOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ProtoNet.NotifySomeOnePrimaryChatToMe)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -1237,55 +1460,89 @@ public final class MsgChat {
         getFromAccountBytes();
 
     /**
-     * <code>required string chatText = 2;</code>
+     * <code>required int32 type = 2;</code>
      *
      * <pre>
-     *发送内容
+     *聊天类型
      * </pre>
      */
-    boolean hasChatText();
+    boolean hasType();
     /**
-     * <code>required string chatText = 2;</code>
+     * <code>required int32 type = 2;</code>
      *
      * <pre>
-     *发送内容
+     *聊天类型
      * </pre>
      */
-    java.lang.String getChatText();
+    int getType();
+
     /**
-     * <code>required string chatText = 2;</code>
+     * <code>optional string text = 3;</code>
      *
      * <pre>
-     *发送内容
+     *文字聊天内容
+     * </pre>
+     */
+    boolean hasText();
+    /**
+     * <code>optional string text = 3;</code>
+     *
+     * <pre>
+     *文字聊天内容
+     * </pre>
+     */
+    java.lang.String getText();
+    /**
+     * <code>optional string text = 3;</code>
+     *
+     * <pre>
+     *文字聊天内容
      * </pre>
      */
     com.google.protobuf.ByteString
-        getChatTextBytes();
+        getTextBytes();
+
+    /**
+     * <code>optional bytes mediaBytes = 4;</code>
+     *
+     * <pre>
+     *音频文件二进制流
+     * </pre>
+     */
+    boolean hasMediaBytes();
+    /**
+     * <code>optional bytes mediaBytes = 4;</code>
+     *
+     * <pre>
+     *音频文件二进制流
+     * </pre>
+     */
+    com.google.protobuf.ByteString getMediaBytes();
   }
   /**
-   * Protobuf type {@code ProtoNet.ResSdkSomeOnePrimaryTextChatToMe}
+   * Protobuf type {@code ProtoNet.NotifySomeOnePrimaryChatToMe}
    *
    * <pre>
-   *RES_SDK_SOMEONEPRIMARYTEXTCHATTOME  = 200003;//返回sdk某人给我私聊了文本消息
+   *NOTIFY_SOMEONE_PRIMARY_CHAT_TO_ME = 200003;//通知某人私聊我
    * </pre>
    */
-  public static final class ResSdkSomeOnePrimaryTextChatToMe extends
+  public static final class NotifySomeOnePrimaryChatToMe extends
       com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:ProtoNet.ResSdkSomeOnePrimaryTextChatToMe)
-      ResSdkSomeOnePrimaryTextChatToMeOrBuilder {
-    // Use ResSdkSomeOnePrimaryTextChatToMe.newBuilder() to construct.
-    private ResSdkSomeOnePrimaryTextChatToMe(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      // @@protoc_insertion_point(message_implements:ProtoNet.NotifySomeOnePrimaryChatToMe)
+      NotifySomeOnePrimaryChatToMeOrBuilder {
+    // Use NotifySomeOnePrimaryChatToMe.newBuilder() to construct.
+    private NotifySomeOnePrimaryChatToMe(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
       this.unknownFields = builder.getUnknownFields();
     }
-    private ResSdkSomeOnePrimaryTextChatToMe(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+    private NotifySomeOnePrimaryChatToMe(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
 
-    private static final ResSdkSomeOnePrimaryTextChatToMe defaultInstance;
-    public static ResSdkSomeOnePrimaryTextChatToMe getDefaultInstance() {
+    private static final NotifySomeOnePrimaryChatToMe defaultInstance;
+    public static NotifySomeOnePrimaryChatToMe getDefaultInstance() {
       return defaultInstance;
     }
 
-    public ResSdkSomeOnePrimaryTextChatToMe getDefaultInstanceForType() {
+    public NotifySomeOnePrimaryChatToMe getDefaultInstanceForType() {
       return defaultInstance;
     }
 
@@ -1295,7 +1552,7 @@ public final class MsgChat {
         getUnknownFields() {
       return this.unknownFields;
     }
-    private ResSdkSomeOnePrimaryTextChatToMe(
+    private NotifySomeOnePrimaryChatToMe(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1324,10 +1581,20 @@ public final class MsgChat {
               fromAccount_ = bs;
               break;
             }
-            case 18: {
-              com.google.protobuf.ByteString bs = input.readBytes();
+            case 16: {
               bitField0_ |= 0x00000002;
-              chatText_ = bs;
+              type_ = input.readInt32();
+              break;
+            }
+            case 26: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00000004;
+              text_ = bs;
+              break;
+            }
+            case 34: {
+              bitField0_ |= 0x00000008;
+              mediaBytes_ = input.readBytes();
               break;
             }
           }
@@ -1344,28 +1611,28 @@ public final class MsgChat {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return utouu.im.protobuf.pb.MsgChat.internal_static_ProtoNet_ResSdkSomeOnePrimaryTextChatToMe_descriptor;
+      return utouu.im.protobuf.pb.MsgChat.internal_static_ProtoNet_NotifySomeOnePrimaryChatToMe_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return utouu.im.protobuf.pb.MsgChat.internal_static_ProtoNet_ResSdkSomeOnePrimaryTextChatToMe_fieldAccessorTable
+      return utouu.im.protobuf.pb.MsgChat.internal_static_ProtoNet_NotifySomeOnePrimaryChatToMe_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              utouu.im.protobuf.pb.MsgChat.ResSdkSomeOnePrimaryTextChatToMe.class, utouu.im.protobuf.pb.MsgChat.ResSdkSomeOnePrimaryTextChatToMe.Builder.class);
+              utouu.im.protobuf.pb.MsgChat.NotifySomeOnePrimaryChatToMe.class, utouu.im.protobuf.pb.MsgChat.NotifySomeOnePrimaryChatToMe.Builder.class);
     }
 
-    public static com.google.protobuf.Parser<ResSdkSomeOnePrimaryTextChatToMe> PARSER =
-        new com.google.protobuf.AbstractParser<ResSdkSomeOnePrimaryTextChatToMe>() {
-      public ResSdkSomeOnePrimaryTextChatToMe parsePartialFrom(
+    public static com.google.protobuf.Parser<NotifySomeOnePrimaryChatToMe> PARSER =
+        new com.google.protobuf.AbstractParser<NotifySomeOnePrimaryChatToMe>() {
+      public NotifySomeOnePrimaryChatToMe parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ResSdkSomeOnePrimaryTextChatToMe(input, extensionRegistry);
+        return new NotifySomeOnePrimaryChatToMe(input, extensionRegistry);
       }
     };
 
     @java.lang.Override
-    public com.google.protobuf.Parser<ResSdkSomeOnePrimaryTextChatToMe> getParserForType() {
+    public com.google.protobuf.Parser<NotifySomeOnePrimaryChatToMe> getParserForType() {
       return PARSER;
     }
 
@@ -1424,27 +1691,50 @@ public final class MsgChat {
       }
     }
 
-    public static final int CHATTEXT_FIELD_NUMBER = 2;
-    private java.lang.Object chatText_;
+    public static final int TYPE_FIELD_NUMBER = 2;
+    private int type_;
     /**
-     * <code>required string chatText = 2;</code>
+     * <code>required int32 type = 2;</code>
      *
      * <pre>
-     *发送内容
+     *聊天类型
      * </pre>
      */
-    public boolean hasChatText() {
+    public boolean hasType() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>required string chatText = 2;</code>
+     * <code>required int32 type = 2;</code>
      *
      * <pre>
-     *发送内容
+     *聊天类型
      * </pre>
      */
-    public java.lang.String getChatText() {
-      java.lang.Object ref = chatText_;
+    public int getType() {
+      return type_;
+    }
+
+    public static final int TEXT_FIELD_NUMBER = 3;
+    private java.lang.Object text_;
+    /**
+     * <code>optional string text = 3;</code>
+     *
+     * <pre>
+     *文字聊天内容
+     * </pre>
+     */
+    public boolean hasText() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional string text = 3;</code>
+     *
+     * <pre>
+     *文字聊天内容
+     * </pre>
+     */
+    public java.lang.String getText() {
+      java.lang.Object ref = text_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
@@ -1452,35 +1742,60 @@ public final class MsgChat {
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         if (bs.isValidUtf8()) {
-          chatText_ = s;
+          text_ = s;
         }
         return s;
       }
     }
     /**
-     * <code>required string chatText = 2;</code>
+     * <code>optional string text = 3;</code>
      *
      * <pre>
-     *发送内容
+     *文字聊天内容
      * </pre>
      */
     public com.google.protobuf.ByteString
-        getChatTextBytes() {
-      java.lang.Object ref = chatText_;
+        getTextBytes() {
+      java.lang.Object ref = text_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        chatText_ = b;
+        text_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
 
+    public static final int MEDIABYTES_FIELD_NUMBER = 4;
+    private com.google.protobuf.ByteString mediaBytes_;
+    /**
+     * <code>optional bytes mediaBytes = 4;</code>
+     *
+     * <pre>
+     *音频文件二进制流
+     * </pre>
+     */
+    public boolean hasMediaBytes() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    /**
+     * <code>optional bytes mediaBytes = 4;</code>
+     *
+     * <pre>
+     *音频文件二进制流
+     * </pre>
+     */
+    public com.google.protobuf.ByteString getMediaBytes() {
+      return mediaBytes_;
+    }
+
     private void initFields() {
       fromAccount_ = "";
-      chatText_ = "";
+      type_ = 0;
+      text_ = "";
+      mediaBytes_ = com.google.protobuf.ByteString.EMPTY;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -1492,7 +1807,7 @@ public final class MsgChat {
         memoizedIsInitialized = 0;
         return false;
       }
-      if (!hasChatText()) {
+      if (!hasType()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -1507,7 +1822,13 @@ public final class MsgChat {
         output.writeBytes(1, getFromAccountBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, getChatTextBytes());
+        output.writeInt32(2, type_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeBytes(3, getTextBytes());
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeBytes(4, mediaBytes_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -1524,7 +1845,15 @@ public final class MsgChat {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, getChatTextBytes());
+          .computeInt32Size(2, type_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(3, getTextBytes());
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(4, mediaBytes_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -1538,53 +1867,53 @@ public final class MsgChat {
       return super.writeReplace();
     }
 
-    public static utouu.im.protobuf.pb.MsgChat.ResSdkSomeOnePrimaryTextChatToMe parseFrom(
+    public static utouu.im.protobuf.pb.MsgChat.NotifySomeOnePrimaryChatToMe parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static utouu.im.protobuf.pb.MsgChat.ResSdkSomeOnePrimaryTextChatToMe parseFrom(
+    public static utouu.im.protobuf.pb.MsgChat.NotifySomeOnePrimaryChatToMe parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static utouu.im.protobuf.pb.MsgChat.ResSdkSomeOnePrimaryTextChatToMe parseFrom(byte[] data)
+    public static utouu.im.protobuf.pb.MsgChat.NotifySomeOnePrimaryChatToMe parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static utouu.im.protobuf.pb.MsgChat.ResSdkSomeOnePrimaryTextChatToMe parseFrom(
+    public static utouu.im.protobuf.pb.MsgChat.NotifySomeOnePrimaryChatToMe parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static utouu.im.protobuf.pb.MsgChat.ResSdkSomeOnePrimaryTextChatToMe parseFrom(java.io.InputStream input)
+    public static utouu.im.protobuf.pb.MsgChat.NotifySomeOnePrimaryChatToMe parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static utouu.im.protobuf.pb.MsgChat.ResSdkSomeOnePrimaryTextChatToMe parseFrom(
+    public static utouu.im.protobuf.pb.MsgChat.NotifySomeOnePrimaryChatToMe parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseFrom(input, extensionRegistry);
     }
-    public static utouu.im.protobuf.pb.MsgChat.ResSdkSomeOnePrimaryTextChatToMe parseDelimitedFrom(java.io.InputStream input)
+    public static utouu.im.protobuf.pb.MsgChat.NotifySomeOnePrimaryChatToMe parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input);
     }
-    public static utouu.im.protobuf.pb.MsgChat.ResSdkSomeOnePrimaryTextChatToMe parseDelimitedFrom(
+    public static utouu.im.protobuf.pb.MsgChat.NotifySomeOnePrimaryChatToMe parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
-    public static utouu.im.protobuf.pb.MsgChat.ResSdkSomeOnePrimaryTextChatToMe parseFrom(
+    public static utouu.im.protobuf.pb.MsgChat.NotifySomeOnePrimaryChatToMe parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static utouu.im.protobuf.pb.MsgChat.ResSdkSomeOnePrimaryTextChatToMe parseFrom(
+    public static utouu.im.protobuf.pb.MsgChat.NotifySomeOnePrimaryChatToMe parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1593,7 +1922,7 @@ public final class MsgChat {
 
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(utouu.im.protobuf.pb.MsgChat.ResSdkSomeOnePrimaryTextChatToMe prototype) {
+    public static Builder newBuilder(utouu.im.protobuf.pb.MsgChat.NotifySomeOnePrimaryChatToMe prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -1605,29 +1934,29 @@ public final class MsgChat {
       return builder;
     }
     /**
-     * Protobuf type {@code ProtoNet.ResSdkSomeOnePrimaryTextChatToMe}
+     * Protobuf type {@code ProtoNet.NotifySomeOnePrimaryChatToMe}
      *
      * <pre>
-     *RES_SDK_SOMEONEPRIMARYTEXTCHATTOME  = 200003;//返回sdk某人给我私聊了文本消息
+     *NOTIFY_SOMEONE_PRIMARY_CHAT_TO_ME = 200003;//通知某人私聊我
      * </pre>
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:ProtoNet.ResSdkSomeOnePrimaryTextChatToMe)
-        utouu.im.protobuf.pb.MsgChat.ResSdkSomeOnePrimaryTextChatToMeOrBuilder {
+        // @@protoc_insertion_point(builder_implements:ProtoNet.NotifySomeOnePrimaryChatToMe)
+        utouu.im.protobuf.pb.MsgChat.NotifySomeOnePrimaryChatToMeOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return utouu.im.protobuf.pb.MsgChat.internal_static_ProtoNet_ResSdkSomeOnePrimaryTextChatToMe_descriptor;
+        return utouu.im.protobuf.pb.MsgChat.internal_static_ProtoNet_NotifySomeOnePrimaryChatToMe_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return utouu.im.protobuf.pb.MsgChat.internal_static_ProtoNet_ResSdkSomeOnePrimaryTextChatToMe_fieldAccessorTable
+        return utouu.im.protobuf.pb.MsgChat.internal_static_ProtoNet_NotifySomeOnePrimaryChatToMe_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                utouu.im.protobuf.pb.MsgChat.ResSdkSomeOnePrimaryTextChatToMe.class, utouu.im.protobuf.pb.MsgChat.ResSdkSomeOnePrimaryTextChatToMe.Builder.class);
+                utouu.im.protobuf.pb.MsgChat.NotifySomeOnePrimaryChatToMe.class, utouu.im.protobuf.pb.MsgChat.NotifySomeOnePrimaryChatToMe.Builder.class);
       }
 
-      // Construct using utouu.im.protobuf.pb.MsgChat.ResSdkSomeOnePrimaryTextChatToMe.newBuilder()
+      // Construct using utouu.im.protobuf.pb.MsgChat.NotifySomeOnePrimaryChatToMe.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -1649,8 +1978,12 @@ public final class MsgChat {
         super.clear();
         fromAccount_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
-        chatText_ = "";
+        type_ = 0;
         bitField0_ = (bitField0_ & ~0x00000002);
+        text_ = "";
+        bitField0_ = (bitField0_ & ~0x00000004);
+        mediaBytes_ = com.google.protobuf.ByteString.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
 
@@ -1660,23 +1993,23 @@ public final class MsgChat {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return utouu.im.protobuf.pb.MsgChat.internal_static_ProtoNet_ResSdkSomeOnePrimaryTextChatToMe_descriptor;
+        return utouu.im.protobuf.pb.MsgChat.internal_static_ProtoNet_NotifySomeOnePrimaryChatToMe_descriptor;
       }
 
-      public utouu.im.protobuf.pb.MsgChat.ResSdkSomeOnePrimaryTextChatToMe getDefaultInstanceForType() {
-        return utouu.im.protobuf.pb.MsgChat.ResSdkSomeOnePrimaryTextChatToMe.getDefaultInstance();
+      public utouu.im.protobuf.pb.MsgChat.NotifySomeOnePrimaryChatToMe getDefaultInstanceForType() {
+        return utouu.im.protobuf.pb.MsgChat.NotifySomeOnePrimaryChatToMe.getDefaultInstance();
       }
 
-      public utouu.im.protobuf.pb.MsgChat.ResSdkSomeOnePrimaryTextChatToMe build() {
-        utouu.im.protobuf.pb.MsgChat.ResSdkSomeOnePrimaryTextChatToMe result = buildPartial();
+      public utouu.im.protobuf.pb.MsgChat.NotifySomeOnePrimaryChatToMe build() {
+        utouu.im.protobuf.pb.MsgChat.NotifySomeOnePrimaryChatToMe result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public utouu.im.protobuf.pb.MsgChat.ResSdkSomeOnePrimaryTextChatToMe buildPartial() {
-        utouu.im.protobuf.pb.MsgChat.ResSdkSomeOnePrimaryTextChatToMe result = new utouu.im.protobuf.pb.MsgChat.ResSdkSomeOnePrimaryTextChatToMe(this);
+      public utouu.im.protobuf.pb.MsgChat.NotifySomeOnePrimaryChatToMe buildPartial() {
+        utouu.im.protobuf.pb.MsgChat.NotifySomeOnePrimaryChatToMe result = new utouu.im.protobuf.pb.MsgChat.NotifySomeOnePrimaryChatToMe(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -1686,32 +2019,46 @@ public final class MsgChat {
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.chatText_ = chatText_;
+        result.type_ = type_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.text_ = text_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.mediaBytes_ = mediaBytes_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
 
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof utouu.im.protobuf.pb.MsgChat.ResSdkSomeOnePrimaryTextChatToMe) {
-          return mergeFrom((utouu.im.protobuf.pb.MsgChat.ResSdkSomeOnePrimaryTextChatToMe)other);
+        if (other instanceof utouu.im.protobuf.pb.MsgChat.NotifySomeOnePrimaryChatToMe) {
+          return mergeFrom((utouu.im.protobuf.pb.MsgChat.NotifySomeOnePrimaryChatToMe)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(utouu.im.protobuf.pb.MsgChat.ResSdkSomeOnePrimaryTextChatToMe other) {
-        if (other == utouu.im.protobuf.pb.MsgChat.ResSdkSomeOnePrimaryTextChatToMe.getDefaultInstance()) return this;
+      public Builder mergeFrom(utouu.im.protobuf.pb.MsgChat.NotifySomeOnePrimaryChatToMe other) {
+        if (other == utouu.im.protobuf.pb.MsgChat.NotifySomeOnePrimaryChatToMe.getDefaultInstance()) return this;
         if (other.hasFromAccount()) {
           bitField0_ |= 0x00000001;
           fromAccount_ = other.fromAccount_;
           onChanged();
         }
-        if (other.hasChatText()) {
-          bitField0_ |= 0x00000002;
-          chatText_ = other.chatText_;
+        if (other.hasType()) {
+          setType(other.getType());
+        }
+        if (other.hasText()) {
+          bitField0_ |= 0x00000004;
+          text_ = other.text_;
           onChanged();
+        }
+        if (other.hasMediaBytes()) {
+          setMediaBytes(other.getMediaBytes());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -1722,7 +2069,7 @@ public final class MsgChat {
           
           return false;
         }
-        if (!hasChatText()) {
+        if (!hasType()) {
           
           return false;
         }
@@ -1733,11 +2080,11 @@ public final class MsgChat {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        utouu.im.protobuf.pb.MsgChat.ResSdkSomeOnePrimaryTextChatToMe parsedMessage = null;
+        utouu.im.protobuf.pb.MsgChat.NotifySomeOnePrimaryChatToMe parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (utouu.im.protobuf.pb.MsgChat.ResSdkSomeOnePrimaryTextChatToMe) e.getUnfinishedMessage();
+          parsedMessage = (utouu.im.protobuf.pb.MsgChat.NotifySomeOnePrimaryChatToMe) e.getUnfinishedMessage();
           throw e;
         } finally {
           if (parsedMessage != null) {
@@ -1848,32 +2195,80 @@ public final class MsgChat {
         return this;
       }
 
-      private java.lang.Object chatText_ = "";
+      private int type_ ;
       /**
-       * <code>required string chatText = 2;</code>
+       * <code>required int32 type = 2;</code>
        *
        * <pre>
-       *发送内容
+       *聊天类型
        * </pre>
        */
-      public boolean hasChatText() {
+      public boolean hasType() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>required string chatText = 2;</code>
+       * <code>required int32 type = 2;</code>
        *
        * <pre>
-       *发送内容
+       *聊天类型
        * </pre>
        */
-      public java.lang.String getChatText() {
-        java.lang.Object ref = chatText_;
+      public int getType() {
+        return type_;
+      }
+      /**
+       * <code>required int32 type = 2;</code>
+       *
+       * <pre>
+       *聊天类型
+       * </pre>
+       */
+      public Builder setType(int value) {
+        bitField0_ |= 0x00000002;
+        type_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required int32 type = 2;</code>
+       *
+       * <pre>
+       *聊天类型
+       * </pre>
+       */
+      public Builder clearType() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        type_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object text_ = "";
+      /**
+       * <code>optional string text = 3;</code>
+       *
+       * <pre>
+       *文字聊天内容
+       * </pre>
+       */
+      public boolean hasText() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional string text = 3;</code>
+       *
+       * <pre>
+       *文字聊天内容
+       * </pre>
+       */
+      public java.lang.String getText() {
+        java.lang.Object ref = text_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
           if (bs.isValidUtf8()) {
-            chatText_ = s;
+            text_ = s;
           }
           return s;
         } else {
@@ -1881,99 +2276,150 @@ public final class MsgChat {
         }
       }
       /**
-       * <code>required string chatText = 2;</code>
+       * <code>optional string text = 3;</code>
        *
        * <pre>
-       *发送内容
+       *文字聊天内容
        * </pre>
        */
       public com.google.protobuf.ByteString
-          getChatTextBytes() {
-        java.lang.Object ref = chatText_;
+          getTextBytes() {
+        java.lang.Object ref = text_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          chatText_ = b;
+          text_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>required string chatText = 2;</code>
+       * <code>optional string text = 3;</code>
        *
        * <pre>
-       *发送内容
+       *文字聊天内容
        * </pre>
        */
-      public Builder setChatText(
+      public Builder setText(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
-        chatText_ = value;
+  bitField0_ |= 0x00000004;
+        text_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required string chatText = 2;</code>
+       * <code>optional string text = 3;</code>
        *
        * <pre>
-       *发送内容
+       *文字聊天内容
        * </pre>
        */
-      public Builder clearChatText() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        chatText_ = getDefaultInstance().getChatText();
+      public Builder clearText() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        text_ = getDefaultInstance().getText();
         onChanged();
         return this;
       }
       /**
-       * <code>required string chatText = 2;</code>
+       * <code>optional string text = 3;</code>
        *
        * <pre>
-       *发送内容
+       *文字聊天内容
        * </pre>
        */
-      public Builder setChatTextBytes(
+      public Builder setTextBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
-        chatText_ = value;
+  bitField0_ |= 0x00000004;
+        text_ = value;
         onChanged();
         return this;
       }
 
-      // @@protoc_insertion_point(builder_scope:ProtoNet.ResSdkSomeOnePrimaryTextChatToMe)
+      private com.google.protobuf.ByteString mediaBytes_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>optional bytes mediaBytes = 4;</code>
+       *
+       * <pre>
+       *音频文件二进制流
+       * </pre>
+       */
+      public boolean hasMediaBytes() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>optional bytes mediaBytes = 4;</code>
+       *
+       * <pre>
+       *音频文件二进制流
+       * </pre>
+       */
+      public com.google.protobuf.ByteString getMediaBytes() {
+        return mediaBytes_;
+      }
+      /**
+       * <code>optional bytes mediaBytes = 4;</code>
+       *
+       * <pre>
+       *音频文件二进制流
+       * </pre>
+       */
+      public Builder setMediaBytes(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+        mediaBytes_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bytes mediaBytes = 4;</code>
+       *
+       * <pre>
+       *音频文件二进制流
+       * </pre>
+       */
+      public Builder clearMediaBytes() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        mediaBytes_ = getDefaultInstance().getMediaBytes();
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:ProtoNet.NotifySomeOnePrimaryChatToMe)
     }
 
     static {
-      defaultInstance = new ResSdkSomeOnePrimaryTextChatToMe(true);
+      defaultInstance = new NotifySomeOnePrimaryChatToMe(true);
       defaultInstance.initFields();
     }
 
-    // @@protoc_insertion_point(class_scope:ProtoNet.ResSdkSomeOnePrimaryTextChatToMe)
+    // @@protoc_insertion_point(class_scope:ProtoNet.NotifySomeOnePrimaryChatToMe)
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_ProtoNet_ReqSdkPrimaryTextChat_descriptor;
+    internal_static_ProtoNet_ReqSdkPrimaryChat_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_ProtoNet_ReqSdkPrimaryTextChat_fieldAccessorTable;
+      internal_static_ProtoNet_ReqSdkPrimaryChat_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_ProtoNet_ResSdkPrimaryTextChat_descriptor;
+    internal_static_ProtoNet_ResSdkPrimaryChat_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_ProtoNet_ResSdkPrimaryTextChat_fieldAccessorTable;
+      internal_static_ProtoNet_ResSdkPrimaryChat_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_ProtoNet_ResSdkSomeOnePrimaryTextChatToMe_descriptor;
+    internal_static_ProtoNet_NotifySomeOnePrimaryChatToMe_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_ProtoNet_ResSdkSomeOnePrimaryTextChatToMe_fieldAccessorTable;
+      internal_static_ProtoNet_NotifySomeOnePrimaryChatToMe_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -1983,13 +2429,13 @@ public final class MsgChat {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\rMsgChat.proto\022\010ProtoNet\"<\n\025ReqSdkPrima" +
-      "ryTextChat\022\021\n\ttoAccount\030\001 \002(\t\022\020\n\010chatTex" +
-      "t\030\002 \002(\t\"6\n\025ResSdkPrimaryTextChat\022\035\n\025prim" +
-      "aryTextChatResult\030\001 \002(\005\"I\n ResSdkSomeOne" +
-      "PrimaryTextChatToMe\022\023\n\013fromAccount\030\001 \002(\t" +
-      "\022\020\n\010chatText\030\002 \002(\tB\026\n\024utouu.im.protobuf." +
-      "pb"
+      "\n\rMsgChat.proto\022\010ProtoNet\"V\n\021ReqSdkPrima" +
+      "ryChat\022\021\n\ttoAccount\030\001 \002(\t\022\014\n\004type\030\002 \002(\005\022" +
+      "\014\n\004text\030\003 \001(\t\022\022\n\nmediaBytes\030\004 \001(\014\"#\n\021Res" +
+      "SdkPrimaryChat\022\016\n\006result\030\001 \002(\005\"c\n\034Notify" +
+      "SomeOnePrimaryChatToMe\022\023\n\013fromAccount\030\001 " +
+      "\002(\t\022\014\n\004type\030\002 \002(\005\022\014\n\004text\030\003 \001(\t\022\022\n\nmedia" +
+      "Bytes\030\004 \001(\014B\026\n\024utouu.im.protobuf.pb"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -2003,24 +2449,24 @@ public final class MsgChat {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
-    internal_static_ProtoNet_ReqSdkPrimaryTextChat_descriptor =
+    internal_static_ProtoNet_ReqSdkPrimaryChat_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_ProtoNet_ReqSdkPrimaryTextChat_fieldAccessorTable = new
+    internal_static_ProtoNet_ReqSdkPrimaryChat_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_ProtoNet_ReqSdkPrimaryTextChat_descriptor,
-        new java.lang.String[] { "ToAccount", "ChatText", });
-    internal_static_ProtoNet_ResSdkPrimaryTextChat_descriptor =
+        internal_static_ProtoNet_ReqSdkPrimaryChat_descriptor,
+        new java.lang.String[] { "ToAccount", "Type", "Text", "MediaBytes", });
+    internal_static_ProtoNet_ResSdkPrimaryChat_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_ProtoNet_ResSdkPrimaryTextChat_fieldAccessorTable = new
+    internal_static_ProtoNet_ResSdkPrimaryChat_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_ProtoNet_ResSdkPrimaryTextChat_descriptor,
-        new java.lang.String[] { "PrimaryTextChatResult", });
-    internal_static_ProtoNet_ResSdkSomeOnePrimaryTextChatToMe_descriptor =
+        internal_static_ProtoNet_ResSdkPrimaryChat_descriptor,
+        new java.lang.String[] { "Result", });
+    internal_static_ProtoNet_NotifySomeOnePrimaryChatToMe_descriptor =
       getDescriptor().getMessageTypes().get(2);
-    internal_static_ProtoNet_ResSdkSomeOnePrimaryTextChatToMe_fieldAccessorTable = new
+    internal_static_ProtoNet_NotifySomeOnePrimaryChatToMe_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_ProtoNet_ResSdkSomeOnePrimaryTextChatToMe_descriptor,
-        new java.lang.String[] { "FromAccount", "ChatText", });
+        internal_static_ProtoNet_NotifySomeOnePrimaryChatToMe_descriptor,
+        new java.lang.String[] { "FromAccount", "Type", "Text", "MediaBytes", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

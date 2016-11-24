@@ -37,6 +37,7 @@ public class ReqHeartBeatProcess extends NetProcess<ReqHeartBeat> {
 		ResHeartBeat.Builder builder = ResHeartBeat.newBuilder();
 		builder.setTime(System.currentTimeMillis());
 		IoSender.sendHeartBeatMsg(session, builder);
+		System.out.println("收到心跳"+System.currentTimeMillis());
 	}
 
 }
