@@ -19,6 +19,7 @@ public class V1AccountController extends BaseController{
 	}
 	
 	@RequestMapping(value="/sendMsg")
+	@ILoginNoCheck
 	public String sendMsg(HttpServletRequest request){
 		System.out.println("##########向服务器sdk用户主动推数据");
 		String toAccountString = request.getParameter("toAccount");

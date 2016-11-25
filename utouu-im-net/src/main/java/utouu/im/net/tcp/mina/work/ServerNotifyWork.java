@@ -5,6 +5,7 @@ import java.util.Set;
 import com.alibaba.fastjson.JSONObject;
 
 import utouu.im.net.GlobalServerSender.ServerNotify;
+import utouu.im.net.service.ZookeeperService;
 import utouu.im.net.tcp.mina.IMQueue;
 import utouu.im.net.tcp.mina.SessionClient;
 import utouu.im.net.tcp.mina.cache.ServerCache;
@@ -31,6 +32,7 @@ public class ServerNotifyWork extends QueueWork{
 		builder.setText(text);
 		for(String account:accounts){
 			SessionClient client=ServerCache.getClient(account);
+			System.out.println("服务器节点:"+ZookeeperService.address+":"+ZookeeperService.port+"收到数据:"+text);
 			if(client==null){
 				//该账号不在当前服务器节点
 				continue;

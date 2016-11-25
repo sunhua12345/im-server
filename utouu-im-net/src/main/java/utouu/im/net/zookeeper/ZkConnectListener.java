@@ -7,8 +7,12 @@ import org.apache.curator.framework.recipes.locks.InterProcessMutex;
 import org.apache.curator.framework.state.ConnectionState;
 import org.apache.curator.framework.state.ConnectionStateListener;
 
-public class ZkConnectListener implements ConnectionStateListener{
+import utouu.im.net.ServiceManager;
+import utouu.im.net.service.ZookeeperService;
+import utouu.im.net.service.api.IZookeeperService;
 
+public class ZkConnectListener implements ConnectionStateListener{
+	private IZookeeperService zookeeperService = ServiceManager.getService(IZookeeperService.class);
 	@Override
 	public void stateChanged(CuratorFramework client, ConnectionState newState) {
 		if(newState==ConnectionState.CONNECTED){

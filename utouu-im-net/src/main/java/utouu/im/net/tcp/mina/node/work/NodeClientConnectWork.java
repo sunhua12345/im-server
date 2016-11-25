@@ -51,7 +51,7 @@ public class NodeClientConnectWork extends AynWork{
 				old = null;
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 		} finally {
 			if (future != null) {
 				future.cancel();

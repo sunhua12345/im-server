@@ -16,4 +16,6 @@ public interface IZookeeperService {
 
 	public void server_notify(ServerNotify notify) throws UnsupportedEncodingException, Exception;
 
+	public void destory();
+
 }

@@ -135,6 +135,18 @@ public class ZookeeperTool {
 		return -1;
 	}
 
+	
+	public static void main(String[] args) throws Exception {
+		Object obj = ZookeeperTool.handleLockWork("/sassadas", new LockMethod() {
+			
+			@Override
+			public Object lockMethod(Object... objs) throws Exception {
+				int param = (int) objs[0];
+				
+				return 1;
+			}
+		}, 1);
+	}
 	/********************************************** ZOOKEEPER_PROCESS_LOCK **********************************/
 
 	public static Object handleLockWork(String lock, LockMethod lockMethod, Object... objs) throws Exception {
