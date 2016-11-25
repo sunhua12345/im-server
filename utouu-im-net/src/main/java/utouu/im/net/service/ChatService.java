@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import com.google.protobuf.ByteString;
 
-import utouu.im.bean.dto.ChatStructDto;
 import utouu.im.net.service.api.IChatService;
 import utouu.im.net.service.api.IZookeeperService;
 import utouu.im.net.tcp.mina.SessionClient;
