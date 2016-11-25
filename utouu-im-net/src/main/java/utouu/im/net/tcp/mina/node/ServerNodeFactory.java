@@ -7,6 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.apache.mina.core.session.IoSession;
 
 import utouu.im.net.tcp.mina.node.work.NodeServerHeartBeatWork;
+import utouu.im.net.tcp.mina.node.work.TryReconnectNodeServer;
 import utouu.im.thread.WorkManager;
 
 
@@ -29,6 +30,9 @@ public class ServerNodeFactory {
 			if(entry.getValue().equals(ioSession)){
 				System.out.println("节点" + entry.getKey() + "线路已从关闭并从集群中移除");
 				openServerNodeSessions.remove(entry.getKey());
+				String nodeIp=entry.getKey().split("-")[0];
+				int nodePort = Integer.valueOf(entry.getKey().split("-")[1]);
+				WorkManager.getManager().submit(TryReconnectNodeServer.class,new ServerNodeInfo(nodeIp,nodePort));//尝试重新链接
 				return;
 			}
 		}

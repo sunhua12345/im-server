@@ -42,7 +42,7 @@ public class SessionManager {
 		for (Entry<Long, IoSession> entry : sessions.entrySet()) {
 			IoSession session = entry.getValue();
 			long freshTime = (long) session.getAttribute(ConstantUtils.LAST_RECIVED_TIME);
-			if (now - freshTime > heartTime) {
+			if (now - freshTime > heartTime*3) {
 				// 心跳超时,释放连接
 				closeSession(session);
 			}
