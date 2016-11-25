@@ -53,7 +53,6 @@ public class SessionManager {
 		if (session.isConnected() || session.isActive() || !session.isClosing()) {
 			removeSession(session);
 			WorkManager.getManager().submit(SessionCloseWork.class,session);
-			session.closeOnFlush();
 		}
 	}
 

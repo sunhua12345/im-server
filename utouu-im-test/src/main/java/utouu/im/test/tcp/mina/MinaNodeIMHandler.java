@@ -22,8 +22,9 @@ public class MinaNodeIMHandler implements IoHandler {
 
 	private void close(IoSession session) {
 		if (session.isConnected() || session.isActive() || !session.isClosing()) {
+			System.out.println("#######CLOSED");
 			ServerNodeFactory.getFactory().serverNodeClosed(session);
-			session.closeOnFlush();
+			session.closeNow();
 		}		
 	}
 

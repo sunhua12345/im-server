@@ -32,6 +32,7 @@ public class SessionCloseWork extends QueueWork{
 				e.printStackTrace();
 			}
 		}
+		ioSession.closeNow();
 		ioSession = null;//等待资源回收
 	}
 

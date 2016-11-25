@@ -47,7 +47,7 @@ public class NodeClientConnectWork extends AynWork{
 			builder.setServerport(ZookeeperService.port);
 			IoSender.sendMsg(nodeSession, GameCode.REQ_NODE_SERVER_CREATE,builder);
 			if (old != null) {
-				old.closeOnFlush();
+				old.closeNow();
 				old = null;
 			}
 		} catch (Exception e) {

@@ -38,7 +38,7 @@ public class NodeClientBackConnectWork extends AynWork {
 			IoSession old = ServerNodeFactory.openServerNodeSessions.put(serverNode.toString(), nodeSession);// 加入已开列表
 			System.out.println("节点" + serverNode.toString() + "线路成功加入到服务器集群");
 			if (old != null) {
-				old.closeOnFlush();
+				old.closeNow();
 				old = null;
 			}
 		} catch (Exception e) {
